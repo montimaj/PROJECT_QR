@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import android.os.Environment;
-import android.util.Log;
-
 import java.io.*;
 
 public class QRCode extends Activity implements OnClickListener
@@ -24,7 +22,8 @@ public class QRCode extends Activity implements OnClickListener
 	public static String scanContent="No result";
 	public static final String filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/QR";	
 	
-    protected void onCreate(Bundle savedInstanceState)
+    
+	protected void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
@@ -43,8 +42,8 @@ public class QRCode extends Activity implements OnClickListener
 		if(v.getId()==R.id.scan_button)
 		{
 			tv.setText("");
-			IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-			scanIntegrator.initiateScan();
+			IntentIntegrator scanner = new IntentIntegrator(this);
+			scanner.initiateScan();			
 		}	
 		if(v.getId()==R.id.ab)
 		{
@@ -64,29 +63,32 @@ public class QRCode extends Activity implements OnClickListener
 	}	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent)
 	{
-		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);		
-		if (scanningResult != null)
+		if(intent!=null)
 		{
-			scanContent = scanningResult.getContents();		
-			if(checkExternalMedia())
+			IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);		
+			if (scanningResult != null)
 			{
-				write_to_file();	        			
-				String zipin=filePath+"/result.zip";
-				String files[]=Unzip.unzip(zipin, filePath);
-				if(files[2].equals(""))
-					tv.setText("Image was not scanned properly.Try again!");
+				scanContent = scanningResult.getContents();		
+				if(checkExternalMedia())
+				{
+					write_to_file();	        			
+					String zipin=filePath+"/result.zip";
+					String files[]=Unzip.unzip(zipin, filePath);
+					if(files[2].equals(""))
+						tv.setText("Image was not scanned properly.Try again!");
+					else
+						tv.setText("Decoded files are: \n"+files[0]+"\n"+files[1]+"\n"+files[2]);						
+				}
 				else
-					tv.setText("Decoded files are: \n"+files[0]+"\n"+files[1]+"\n"+files[2]);						
+					tv.setText("Device doesn't support read/write!");
 			}
 			else
-				tv.setText("Device doesn't support read/write!");
-		}
-		else
-		{
-		    Toast toast = Toast.makeText(getApplicationContext(),
-		        "No scan data received!", Toast.LENGTH_SHORT);
-		    toast.show();
-		}	
+			{
+			    Toast toast = Toast.makeText(getApplicationContext(),
+			        "No scan data received!", Toast.LENGTH_SHORT);
+			    toast.show();		    
+			}	
+		}		
 	}   
 	public boolean checkExternalMedia()
 	{
@@ -120,16 +122,10 @@ public class QRCode extends Activity implements OnClickListener
 		        	f.write(scanContent.charAt(i));		        		        
 		        f.close();
 		    } 
-		    catch (FileNotFoundException e)
+		    catch(Exception e)
 		    {
-		        e.printStackTrace();
-		        Log.i(TAG, "******* File not found. Did you" +
-		                " add a WRITE_EXTERNAL_STORAGE permission to the   manifest?");
-		    } 
-		    catch (IOException e) 
-		    {
-		        e.printStackTrace();
-		    }   
+		    	Log.create_log(e, tv);
+		    }
 		    tv.append("\n\nFile written to "+file);
 	}	
 }     

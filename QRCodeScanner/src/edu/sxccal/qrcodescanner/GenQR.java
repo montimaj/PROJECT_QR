@@ -28,7 +28,8 @@ public class GenQR extends Activity
 		        {		            
 		            String fp=et.getText().toString();
 		            tv.setText("");
-		            GenSig.Gen_sig(fp);		            
+		            GenSig.Gen_sig(fp);
+		            QR.generateQRCode(fp);
 		            return true;
 		        }
 		        return false;

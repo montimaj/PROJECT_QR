@@ -56,14 +56,5 @@ public class Unzip
             bos.write(bytesIn, 0, read);
         }
         bos.close();
-    }
-    public static void modify_file(String s,String s1) throws IOException
-    {
-    	FileOutputStream fp=new FileOutputStream(s);	
-    	RandomAccessFile rf=new RandomAccessFile(s1,"rw");
-    	for(int i=0;i<rf.length()-1;++i)
-    		fp.write(rf.read());
-    	rf.close();
-    	fp.close();
-    }
+    }    
 }
