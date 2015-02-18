@@ -16,5 +16,7 @@
     <string name="title_activity_about">About</string>
     <string name="title_activity_gen_qr">GenQR</string>
     <string name="Gen">Generate QR image,Signature</string>
+    <string name="title_activity_decode_qr">DecodeQR</string>
+    <string name="decode">Decode QR image</string>
 
 </resources>

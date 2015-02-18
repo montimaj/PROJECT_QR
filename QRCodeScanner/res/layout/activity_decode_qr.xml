@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sxc">
+
+   <EditText
+       android:id="@+id/edqr"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"    
+       android:layout_centerHorizontal="true"           
+       android:inputType="text|textVisiblePassword" 
+       android:textColor="#0C090A"
+       android:textIsSelectable="true" 
+       android:imeOptions="actionDone">
+
+       <requestFocus />
+
+	</EditText>		    
+   <TextView android:id="@+id/dqr"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textIsSelectable="true"
+	    android:layout_centerHorizontal="true" 
+	    android:background="#463E3F"	    
+	    android:textColor="#FFFFFF"
+	    android:layout_below="@+id/edqr"
+	    android:textAlignment="center"
+   		android:textSize="20sp"/>  	 
+	 
+
+</RelativeLayout>

@@ -1,7 +1,5 @@
 package edu.sxccal.qrcodescanner;
 
-import com.oracle.android.GenSig;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.*;
@@ -27,9 +25,8 @@ public class GenQR extends Activity
 		        if (actionId == EditorInfo.IME_ACTION_DONE)
 		        {		            
 		            String fp=et.getText().toString();
-		            tv.setText("");
-		            GenSig.Gen_sig(fp);
-		            QR.generateQRCode(fp);
+		            tv.setText("");			            
+		            QR.generateQRCode(fp);		            
 		            return true;
 		        }
 		        return false;

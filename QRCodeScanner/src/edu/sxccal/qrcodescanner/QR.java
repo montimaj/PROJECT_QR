@@ -3,7 +3,10 @@ package edu.sxccal.qrcodescanner;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.oracle.android.GenSig;
+
 import java.io.*;
+
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
@@ -30,20 +33,31 @@ public class QR
 		    }
 	    }
 	    catch(Exception e)
-	    {
+	    {	    	
 	    	Log.create_log(e, GenQR.tv);
 	    }
 	    
 	}
 	public static String read_from_file(String s, String charset) throws IOException
-	{				
-		FileInputStream fp=new FileInputStream(s);
-		int c;
+	{	
+		String ext=s.substring(s.indexOf('.')+1,s.length());
+		boolean flag=false;	
+		RandomAccessFile fp=new RandomAccessFile(s,"rw");
+		if(ext.equals("jpg") || ext.equals("png") && fp.length()>1500)
+		{
+			s=ImgtoBW.toBW(s);
+			flag=true;			
+		}
+		fp.close();
+		fp=new RandomAccessFile(s,"rw");
 		String data="";
-		while((c=fp.read())!=-1)
-		  data+=(char)c;
+		for(int i=0;i<fp.length();++i)
+		  data+=(char)fp.read();		
+		GenSig.Gen_sig(s);	
+		if(flag)
+			GenQR.tv.append("\nB&W image: "+s);
 		data = new String(data.getBytes(), charset);
 		fp.close();
 		return data;
-	}
+	}	
 }

@@ -4,19 +4,19 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import android.widget.TextView;
 public class Log 
-{
+{	
 	public static void create_log(Exception e, TextView tv)
-	{
+	{		
 		try
-		 {    			 
+		 {		 
 			 String log=QRCode.filePath+"/log.txt";
 			 FileOutputStream fp=new FileOutputStream(log);
-			 tv.setText("Input error!\nCheck: "+log);
-			 PrintWriter pw=new PrintWriter(fp);
-			 pw.write(e.toString());
+			 tv.append("\n\nOops!\nErrors have been detected\nCheck: "+log);
+			 PrintWriter pw=new PrintWriter(fp,true);
+			 pw.write(e.toString()+"\n");
 			 pw.flush();
 			 pw.close();
-			 fp.close();
+			 fp.close();			 
 		 }catch(Exception e2){}
      }      	
 }

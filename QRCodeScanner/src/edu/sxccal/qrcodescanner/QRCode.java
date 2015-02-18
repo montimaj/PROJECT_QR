@@ -16,7 +16,7 @@ import java.io.*;
 public class QRCode extends Activity implements OnClickListener
 {
 
-	private Button scanBtn,gen,ver,ab;
+	private Button scanBtn,gen,ver,ab,dqr;
 	public static TextView tv;
 	private static final String TAG = "MEDIA";
 	public static String scanContent="No result";
@@ -27,15 +27,20 @@ public class QRCode extends Activity implements OnClickListener
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
+        File dir=new File(QRCode.filePath);
+        if(!dir.exists())
+        	dir.mkdir();
         scanBtn = (Button)findViewById(R.id.scan_button);           
         tv=(TextView)findViewById(R.id.file_write);       
         ver=(Button)findViewById(R.id.ver_sig);
         ab=(Button)findViewById(R.id.ab);
         gen=(Button)findViewById(R.id.gen_qr);
+        dqr=(Button)findViewById(R.id.decode);
         ab.setOnClickListener(this);    
         ver.setOnClickListener(this);         
         scanBtn.setOnClickListener(this);  
         gen.setOnClickListener(this);
+        dqr.setOnClickListener(this);
     }	    
 	public void onClick(View v)
 	{
@@ -58,6 +63,11 @@ public class QRCode extends Activity implements OnClickListener
 		if(v.getId()==R.id.gen_qr)
 		{
 			Intent qr=new Intent(QRCode.this,GenQR.class);
+			startActivity(qr);
+		}
+		if(v.getId()==R.id.decode)
+		{
+			Intent qr=new Intent(QRCode.this,DecodeQR.class);
 			startActivity(qr);
 		}
 	}	
@@ -112,8 +122,7 @@ public class QRCode extends Activity implements OnClickListener
 	}		
 	public void write_to_file()
 	{			 			
-		    File dir = new File (filePath);
-		    dir.mkdirs();
+		    File dir = new File (filePath);		    
 		    File file = new File(dir, "/result.zip");		    
 		    try 
 		    {
@@ -123,7 +132,7 @@ public class QRCode extends Activity implements OnClickListener
 		        f.close();
 		    } 
 		    catch(Exception e)
-		    {
+		    {		    	
 		    	Log.create_log(e, tv);
 		    }
 		    tv.append("\n\nFile written to "+file);
