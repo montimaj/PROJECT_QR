@@ -4,9 +4,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.oracle.android.GenSig;
-
 import java.io.*;
-
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
