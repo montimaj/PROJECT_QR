@@ -1,7 +1,6 @@
 package com.oracle.android;
 import java.io.*;
 import java.security.*;
-
 import edu.sxccal.qrcodescanner.*;
 
 public class GenSig
