@@ -9,11 +9,11 @@ public class VerSig
 {
 
 	public static void verify(String args[]) 
-    {    	
-    	boolean verifies=false;    
+    	{    	
+    		boolean verifies=false;    
 		try
 		{	    		
-				FileInputStream keyfis = new FileInputStream(args[0]);
+	            FileInputStream keyfis = new FileInputStream(args[0]);
 	            byte[] encKey = new byte[keyfis.available()];  
 	            keyfis.read(encKey);
 	            keyfis.close();
@@ -40,10 +40,10 @@ public class VerSig
 	            Verify.tv.setText("Digital Signature verification result: "+verifies);	
 	     }
     	 catch(Exception e)
-		 {
+	 {
     		 Log.create_log(e, Verify.tv);
-		 }    		 
-	}		
+         }    		 
+      }		
 }
 
 
