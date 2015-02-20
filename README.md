@@ -12,4 +12,8 @@ Decoding any QRCode is also possible via the app!
 
 3072-bit key has been used to implement RSA!
 
+JDK version required for this project is version 1.7 or above 
+
+Android API : minimum 15
+
 
