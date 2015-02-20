@@ -38,10 +38,10 @@ public class VerSig
 	            verifies=sig.verify(sigToVerify);  	            
 	            Verify.tv.setText("Digital Signature verification result: "+verifies);	
 	     }
-    	 catch(Exception e)
-	 {
-    		 Log.create_log(e, Verify.tv);
-         }    		 
+	     catch(Exception e)
+	     {
+	            Log.create_log(e, Verify.tv);
+	     }    		 
       }		
 }
 
