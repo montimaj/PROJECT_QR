@@ -4,14 +4,13 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.TextView;
-
 import com.oracle.android.VerSig;
 import edu.sxccal.qrcodescanner.R;
-
 import edu.sxccal.qrcodescanner.QRCode;
 import android.view.KeyEvent;
 import android.app.Activity;
 import android.view.inputmethod.EditorInfo;
+
 public class Verify extends Activity 
 {	
 	private EditText et;
