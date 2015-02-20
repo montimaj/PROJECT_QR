@@ -15,6 +15,7 @@ import com.google.zxing.common.*;
 import com.google.zxing.qrcode.*;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
 public class DecodeQR extends Activity 
 {	
 	private EditText et;
@@ -48,12 +49,12 @@ public class DecodeQR extends Activity
 			tv= (TextView)findViewById(R.id.dqr);
 			Bitmap bmp=BitmapFactory.decodeFile(f);
 			int width = bmp.getWidth(), height = bmp.getHeight();
-	        int[] pixels = new int[width * height];
-	        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
-	        bmp.recycle();
-	        bmp = null;
-	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-	        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+		        int[] pixels = new int[width * height];
+		        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
+		        bmp.recycle();
+		        bmp = null;
+		        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+		        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 			Result qr_result = new QRCodeReader().decode(bitmap);
 			tv.setText("Successfully Decoded!\n");
 			tv.append("Decoded file is at:\n");
