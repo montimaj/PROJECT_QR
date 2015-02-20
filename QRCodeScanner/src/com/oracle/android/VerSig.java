@@ -2,7 +2,6 @@ package com.oracle.android;
 import java.io.*;
 import java.security.*;
 import java.security.spec.*;
-
 import edu.sxccal.qrcodescanner.*;
 
 public class VerSig 
