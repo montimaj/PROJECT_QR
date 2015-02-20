@@ -13,9 +13,9 @@ public class GenSig
         try
         {           
 
-        	FileInputStream fis = new FileInputStream(file);
-        	GenQR.tv.setText("");
-        	KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "AndroidOpenSSL");
+            FileInputStream fis = new FileInputStream(file);
+            GenQR.tv.setText("");
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "AndroidOpenSSL");
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "AndroidOpenSSL");
             keyGen.initialize(3072, random);
             KeyPair pair = keyGen.generateKeyPair();
