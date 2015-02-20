@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import edu.sxccal.qrcodescanner.R;
 import android.widget.TextView;
+
 public class About extends Activity
 {
 	
