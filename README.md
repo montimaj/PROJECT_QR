@@ -1,6 +1,6 @@
                                   /*** 3rd YEAR COLLEGE PROJECT ***/
 
-Generating QR code from various files and verifying the authenticity of the file using digital signature
+Generate QR code from various files and verify the authenticity of the file using digital signature
 
 For PC users:
 For colored images use the ImgtoBlackandWhite.java to convert it to bitmap.
