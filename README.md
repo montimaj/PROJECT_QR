@@ -12,7 +12,9 @@ The app can also be used to generate QRCode from different files alongside the g
 Decoding any QRCode is also possible via the app!
 
 Encryption Algorithm used: RSA
+
 Hash Algorithm: SHA-1
+
 Key: 3072-bit
 
 Android API : minimum 15
