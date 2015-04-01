@@ -43,10 +43,6 @@ class GenQR
   {
     try
     {
-      /*Scanner scanner = new Scanner(System.in);
-      System.out.print("Enter Output Directory: ");
-      System.out.flush();
-      String filePath = scanner.nextLine();*/
       String filePath = args[1];
       File dir = new File(filePath);
       if(!dir.exists())
