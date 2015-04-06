@@ -43,8 +43,8 @@ class GenQR
   {
     try
     {
-      String filePath="/home/monti/QR";
-      File dir=new File(filePath);
+      String filePath = args[1];
+      File dir = new File(filePath);
       if(!dir.exists())
 	dir.mkdir();
       GenSig.Gen_sig(args[0],filePath);

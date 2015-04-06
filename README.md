@@ -19,4 +19,10 @@ Key: 3072-bit
 
 Android API : minimum 15
 
+GTK+ GUI:
+Dependencies: GTK+, gtkdialog
+
+
+
+
 
