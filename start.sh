@@ -34,7 +34,7 @@ export MAIN_DIALOG='
 	<height>20</height>
 	<width>40</width>
 	<label>Generate</label>
-	<action signal="clicked">java GenQR $FILE $FILE_DIRECTORY</action>
+	<action signal="clicked">javac GenQR.java && java GenQR $FILE $FILE_DIRECTORY</action>
 	<variable>"flag"</variable>
       </button>
     </vbox>
