@@ -2,6 +2,7 @@ package edu.sxccal.qrcodescanner;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
 import edu.sxccal.qrcodescanner.R;
 
 import android.os.Bundle;
@@ -11,25 +12,30 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import android.os.Environment;
+
 import java.io.*;
 
 public class QRCode extends Activity implements OnClickListener
 {
 
 	private Button scanBtn,gen,ver,ab,dqr;
-	public static TextView tv;
-	private static final String TAG = "MEDIA";
+	public static TextView tv;	
 	public static String scanContent="No result";
 	public static final String filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/QR";	
-	
     
 	protected void onCreate(Bundle savedInstanceState)
 	{
         super.onCreate(savedInstanceState);
+        
+        //load the main activity layout
         setContentView(R.layout.activity_qr);
+        
+        //Create directory 
         File dir=new File(QRCode.filePath);
         if(!dir.exists())
         	dir.mkdir();
+        
+        //Check which button is pressed
         scanBtn = (Button)findViewById(R.id.scan_button);           
         tv=(TextView)findViewById(R.id.file_write);       
         ver=(Button)findViewById(R.id.ver_sig);
@@ -47,8 +53,8 @@ public class QRCode extends Activity implements OnClickListener
 		if(v.getId()==R.id.scan_button)
 		{
 			tv.setText("");
-			IntentIntegrator scanner = new IntentIntegrator(this);
-			scanner.initiateScan();			
+			IntentIntegrator scanner = new IntentIntegrator(this); //Zxing android interface library 
+			scanner.initiateScan(); //Requires BarcodeScanner app by Zxing to be installed in the phone			
 		}	
 		if(v.getId()==R.id.ab)
 		{
@@ -100,7 +106,7 @@ public class QRCode extends Activity implements OnClickListener
 			}	
 		}		
 	}   
-	public boolean checkExternalMedia()
+	public boolean checkExternalMedia() //checks if there is read and write access to device storage
 	{
 		    boolean readable = false;
 		    boolean writeable = false;
@@ -133,10 +139,8 @@ public class QRCode extends Activity implements OnClickListener
 		    } 
 		    catch(Exception e)
 		    {		    	
-		    	Log.create_log(e, tv);
+		    	Log.create_log(e, tv); //Write logs to log.txt
 		    }
 		    tv.append("\n\nFile written to "+file);
 	}	
-}     
-
-
+}

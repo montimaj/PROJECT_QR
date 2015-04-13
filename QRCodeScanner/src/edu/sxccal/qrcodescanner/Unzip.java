@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+//Module to extract zip file
 public class Unzip
 {    
     private static final int BUFFER_SIZE = 4096;      

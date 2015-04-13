@@ -2,12 +2,12 @@ package edu.sxccal.qrcodescanner;
 
 import android.app.Activity;
 import android.os.Bundle;
-import edu.sxccal.qrcodescanner.R;
 import android.widget.TextView;
 
+import edu.sxccal.qrcodescanner.R;
+
 public class About extends Activity
-{
-	
+{	
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);

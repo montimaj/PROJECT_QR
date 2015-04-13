@@ -1,7 +1,9 @@
 package edu.sxccal.utilities;
+
 import java.io.*;
 import java.util.zip.*;
 
+//User library to extract zip file
 public class Unzip
 {    
     private static final int BUFFER_SIZE = 4096;     

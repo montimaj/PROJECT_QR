@@ -4,17 +4,20 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.TextView;
-import edu.sxccal.qrcodescanner.R;
-import edu.sxccal.qrcodescanner.QRCode;
 import android.view.KeyEvent;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.inputmethod.EditorInfo;
+
+import edu.sxccal.qrcodescanner.R;
+import edu.sxccal.qrcodescanner.QRCode;
+
 import java.io.*;
+
 import com.google.zxing.*;
 import com.google.zxing.common.*;
 import com.google.zxing.qrcode.*;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 public class DecodeQR extends Activity 
 {	
@@ -31,9 +34,9 @@ public class DecodeQR extends Activity
 		{		    
 		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
 		    {		        
-		        if (actionId == EditorInfo.IME_ACTION_DONE)
+		        if (actionId == EditorInfo.IME_ACTION_DONE) //Waits until DONE button is pressed on the keyboard
 		        {
-		        	String f= et.getText().toString();
+		        	String f= et.getText().toString(); //stores the filepath in a string
 		        	decode_qr(f);			            
 		            return true;
 		        }
@@ -47,14 +50,14 @@ public class DecodeQR extends Activity
 		try
 		{
 			tv= (TextView)findViewById(R.id.dqr);
-			Bitmap bmp=BitmapFactory.decodeFile(f);
+			Bitmap bmp=BitmapFactory.decodeFile(f); //import QRCode image file
 			int width = bmp.getWidth(), height = bmp.getHeight();
-		        int[] pixels = new int[width * height];
-		        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
-		        bmp.recycle();
-		        bmp = null;
-		        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-		        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+	        int[] pixels = new int[width * height];
+	        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
+	        bmp.recycle();
+	        bmp = null;
+	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //Zxing libraries
+	        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 			Result qr_result = new QRCodeReader().decode(bitmap);
 			tv.setText("Successfully Decoded!\n");
 			tv.append("Decoded file is at:\n");

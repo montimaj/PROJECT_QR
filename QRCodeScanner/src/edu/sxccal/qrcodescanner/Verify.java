@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.TextView;
-import com.oracle.android.VerSig;
-import edu.sxccal.qrcodescanner.R;
-import edu.sxccal.qrcodescanner.QRCode;
-import android.view.KeyEvent;
 import android.app.Activity;
 import android.view.inputmethod.EditorInfo;
+import android.view.KeyEvent;
+
+import com.oracle.android.VerSig;
+
+import edu.sxccal.qrcodescanner.R;
+import edu.sxccal.qrcodescanner.QRCode;
 
 public class Verify extends Activity 
 {	
@@ -28,7 +30,7 @@ public class Verify extends Activity
 		    {		        
 		        if (actionId == EditorInfo.IME_ACTION_DONE)
 		        {
-		            verify_data();			            
+		            verify_data(); //			            
 		            return true;
 		        }
 		        return false;
@@ -38,7 +40,7 @@ public class Verify extends Activity
 	public void verify_data()
 	{
 		String f3= et.getText().toString();	
-		String f1=QRCode.filePath + "/suepk", f2=QRCode.filePath + "/sig", files[]={f1,f2,f3};	
+		String f1=QRCode.filePath + "/suepk", f2=QRCode.filePath + "/sig", files[]={f1,f2,f3};	//get absolute paths of the files
 		tv= (TextView)findViewById(R.id.file_verify);
 		VerSig.verify(files);		
 	}	

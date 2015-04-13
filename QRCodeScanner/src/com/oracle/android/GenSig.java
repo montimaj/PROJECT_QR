@@ -1,20 +1,20 @@
 package com.oracle.android;
+
 import java.io.*;
 import java.security.*;
-import edu.sxccal.qrcodescanner.*;
 
+import edu.sxccal.qrcodescanner.*;
+//Creates 'sig' and 'suepk' files
 public class GenSig
 {
-
     public static void Gen_sig(String file)
     {
-
         try
-        {           
-
-            FileInputStream fis = new FileInputStream(file);
-            GenQR.tv.setText("");
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "AndroidOpenSSL");
+        { 
+        	FileInputStream fis = new FileInputStream(file);
+        	GenQR.tv.setText("");
+        	KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "AndroidOpenSSL"); 
+        	//Algorithm provider for Android java is AndroidOpenSSL 
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "AndroidOpenSSL");
             keyGen.initialize(3072, random);
             KeyPair pair = keyGen.generateKeyPair();
@@ -49,6 +49,3 @@ public class GenSig
 	  }        
     }
 }
-
-
- 

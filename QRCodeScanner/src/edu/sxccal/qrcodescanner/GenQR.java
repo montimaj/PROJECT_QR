@@ -26,7 +26,7 @@ public class GenQR extends Activity
 		        {		            
 		            String fp=et.getText().toString();
 		            tv.setText("");			            
-		            QR.generateQRCode(fp);		            
+		            QR.generateQRCode(fp); //generate QRCode	            
 		            return true;
 		        }
 		        return false;
