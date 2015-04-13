@@ -59,7 +59,7 @@ class GenQR
 	dir.mkdir(); //create directory to store 'sig' and 'suepk'      
       if(is_image(args[0]))
       {
-	//if the input file is an image and file size is greater than 1KB convert it to black and white image
+	//if the input file is an image convert it to black and white image
       	args[0]=ImgtoBlackandWhite.toBW(args[0],filePath);
       }      
       GenSig.Gen_sig(args[0],filePath);
