@@ -1,13 +1,12 @@
 #LICENSE
 LICENSE.txt
 
-#CLASSES
-*.class
-
 #APK
 *.apk
 
 #IMAGES
 *.png
+*.jpg
+*.jpeg
 
 
