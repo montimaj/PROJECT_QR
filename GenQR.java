@@ -19,7 +19,7 @@ class QRCode
     data=read_from_file(data, charset);		
     System.out.println("Result.zip size= "+data.length()+" bytes");
     Map<EncodeHintType, ErrorCorrectionLevel> hint_map1 = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
-    hint_map1.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);	 //hints used by QRCodeWriter.encode for efficient generation of the QRCode image
+    hint_map1.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L); //hints used by QRCodeWriter.encode for efficient generation of the QRCode image
     createQRCode(data, file,hint_map1,500,500);
     System.out.println("QR Code image created successfully!");	       
   }	
