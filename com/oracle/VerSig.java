@@ -1,28 +1,31 @@
 package com.oracle;
+
 import java.io.*;
 import java.security.*;
 import java.security.spec.*;
 
-public class VerSig {
-
-    public static void verify(String suepk, String sign, String data) {
-
+public class VerSig 
+{
+    public static void verify(String suepk, String sign, String data) 
+    {
         try
         {
-            FileInputStream keyfis = new FileInputStream(suepk);
+            FileInputStream keyfis = new FileInputStream(suepk); //import encoded public key
             byte[] encKey = new byte[keyfis.available()];  
             keyfis.read(encKey);
             keyfis.close();
             X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA", "SunRsaSign");
             PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
-            FileInputStream sigfis = new FileInputStream(sign);
+            FileInputStream sigfis = new FileInputStream(sign); //import the signature bytes
             byte[] sigToVerify = new byte[sigfis.available()]; 
             sigfis.read(sigToVerify);
             sigfis.close();
-            Signature sig = Signature.getInstance("SHA1withRSA", "SunRsaSign");
+            Signature sig = Signature.getInstance("SHA1withRSA", "SunRsaSign"); //create a signature object and sign it with the public key
             sig.initVerify(pubKey);
-            FileInputStream datafis = new FileInputStream(data);
+            
+            //update and verify the input file
+            FileInputStream datafis = new FileInputStream(data); 
             BufferedInputStream bufin = new BufferedInputStream(datafis);
             byte[] buffer = new byte[3072];
             int len;
