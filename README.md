@@ -1,28 +1,32 @@
                                   /*** 3rd YEAR COLLEGE PROJECT ***/
 
-Generate QR code from various files and verify the authenticity of the file using digital signature
+Generate QR code from various files and verify the authenticity of the file using digital signature.
 
-For PC users:
-For colored images use the ImgtoBlackandWhite.java to convert it to bitmap.
-Modify the String object'filePath' in GenQR.java accordingly.
-JDK version required is version 1.7 or above 
+The digital signatute scheme has been implemented using:
 
-QRCodeScanner is the source for the android app. BarcodeScanner app by Zxing must be installed alongside this app.
-The app can also be used to generate QRCode from different files alongside the generation of public key and digital signature of local files that exist on the phone.
+-> Encryption Algorithm: RSA
+-> Hash Algorithm: SHA-1
+-> Keysize: 3072-bit
+
+System requirements for PC:
+
+-> Linux
+-> JDK 1.7 or above
+-> GTK+
+-> gtkdialog
+
+Start the GUI by executing start.sh via the terminal(Ex:  foo@bar:~$ ./start.sh )
+
+
+****                                         ANDROID APP                                                           ****
+
+QRCodeScanner is the source for the android app. The app can be used to generate QRCode image and digital signature, public key similar to the PC version. 
+The scan feature of the app is restricted to scanning QRCodes of zip files that contain a file, its detached digital signature('sig') and the public key('suepk') only. Any other QRCode scanning will result in an error which will be displayed on the screen!
+
 Decoding any QRCode is also possible via the app!
 
-Encryption Algorithm used: RSA
+Android smartphone requirements: 
 
-Hash Algorithm: SHA-1
-
-Key: 3072-bit
-
-Android API : minimum 15
-
-GTK+ GUI:
-Dependencies: GTK+, gtkdialog
-
-
-
-
-
+-> Android API 15 or above
+-> BarcodeScanner app by zxing( https://play.google.com/store/apps/details?id=com.google.zxing.client.android&hl=en )
+-> A good built-in camera
