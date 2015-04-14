@@ -55,7 +55,7 @@ public class Unzip
         bos.close();
     }    
 }
-/*								***		LIBRARY OVERVIEW	***	                              						*/
+/*				***		LIBRARY OVERVIEW	***	  				    */
 
 /*java.util.zip: Provides classes for reading and writing the standard ZIP and GZIP file formats.
   Class Details: http://docs.oracle.com/javase/7/docs/api/java/util/zip/package-summary.html
