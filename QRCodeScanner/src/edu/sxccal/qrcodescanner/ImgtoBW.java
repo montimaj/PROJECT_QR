@@ -1,9 +1,14 @@
 package edu.sxccal.qrcodescanner;
 
 //create black and white image
-import java.io.*;
+import java.io.FileOutputStream;
 
-import android.graphics.*;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 
 public class ImgtoBW
 {	
@@ -34,3 +39,22 @@ public class ImgtoBW
 		return bw;
 	}
 }
+
+/*								***		LIBRARY OVERVIEW	***	                              						*/
+
+/*ColorMatrix: 4x5 matrix for transforming the color and alpha components of a Bitmap
+  Class Details: http://developer.android.com/reference/android/graphics/ColorMatrix.html
+  
+  ColorMatrixColorFilter: A color filter that transforms colors through a 4x5 color matrix
+  Class Details: http://developer.android.com/reference/android/graphics/ColorMatrixColorFilter.html
+  
+  Canvas: The Canvas class holds the "draw" calls. To draw something, 4 basic components are needed: 
+  A Bitmap to hold the pixels, 
+  a Canvas to host the draw calls (writing into the bitmap), 
+  a drawing primitive (e.g. Rect, Path, text, Bitmap), 
+  and a paint (to describe the colors and styles for the drawing). 
+  Class Details: http://developer.android.com/reference/android/graphics/Canvas.html
+  
+  Paint: The Paint class holds the style and color information about how to draw geometries, text and bitmaps. 
+  Class Details: http://developer.android.com/reference/android/graphics/Paint.html
+*/

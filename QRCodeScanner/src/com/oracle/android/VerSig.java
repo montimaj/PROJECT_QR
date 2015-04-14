@@ -1,10 +1,15 @@
 package com.oracle.android;
 
-import java.io.*;
-import java.security.*;
-import java.security.spec.*;
+import java.io.FileInputStream;
+import java.io.BufferedInputStream;
 
-import edu.sxccal.qrcodescanner.*;
+import java.security.KeyFactory;
+import java.security.Signature;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
+
+import edu.sxccal.qrcodescanner.Verify;
+import edu.sxccal.qrcodescanner.Log;
 //Verifies input file
 public class VerSig 
 {
@@ -44,4 +49,13 @@ public class VerSig
     		 Log.create_log(e, Verify.tv);
 		 }    		 
 	}		
-} 
+}
+
+/*								***		LIBRARY OVERVIEW	***	                              						*/
+
+/*X509EncodedKeySpec: Represents the ASN.1 encoding of a public key
+ ASN.1 Details: http://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One
+ Class Details: https://docs.oracle.com/javase/7/docs/api/java/security/spec/X509EncodedKeySpec.html
+*/
+ 
+ 

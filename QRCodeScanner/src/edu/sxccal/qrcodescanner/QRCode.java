@@ -10,14 +10,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.TextView;
+import android.widget.Button;
+import android.widget.Toast;
 import android.os.Environment;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class QRCode extends Activity implements OnClickListener
 {
-
 	private Button scanBtn,gen,ver,ab,dqr;
 	public static TextView tv;	
 	public static String scanContent="No result";
@@ -144,3 +146,52 @@ public class QRCode extends Activity implements OnClickListener
 		    tv.append("\n\nFile written to "+file);
 	}	
 }
+
+/*                               *** LIBRARY OVERVIEW ***                                                              */
+
+/*TextView: Displays text to the user and optionally allows them to edit it. 
+  A TextView is a complete text editor, however the basic class is configured to not allow editing.  
+  Class Details: http://developer.android.com/reference/android/widget/TextView.html
+
+  Button: Represents a push-button widget. 
+  Push-buttons can be pressed, or clicked, by the user to perform an action. 
+  Class Details: http://developer.android.com/reference/android/widget/Button.html
+
+  Activity: An activity is a single, focused thing that the user can do. Almost all activities interact with the user,
+  so the Activity class takes care of creating a window for you in which you can place your UI with setContentView(View).
+  There are two methods almost all subclasses of Activity will implement:
+  onCreate(Bundle) is where you initialize your activity. 
+  Most importantly, here you will usually call setContentView(int) with a layout resource defining your UI, and 
+  using findViewById(int) to retrieve the widgets in that UI that you need to interact with programmatically.
+  onPause() is where you deal with the user leaving your activity. 
+  Class Details: http://developer.android.com/reference/android/app/Activity.html
+
+  View: This class represents the basic building block for user interface components. 
+  A View occupies a rectangular area on the screen and is responsible for drawing and event handling. 
+  View is the base class for widgets, which are used to create interactive UI components (buttons, text fields, etc.). 
+  Class Details: http://developer.android.com/reference/android/view/View.html
+
+  Intent: An intent is an abstract description of an operation to be performed.
+  It can be used with startActivity to launch an Activity.
+  Class Details: http://developer.android.com/reference/android/content/Intent.html
+
+  Environment: Provides access to environment variables. 
+  Class Details: http://developer.android.com/reference/android/os/Environment.html
+ 
+  View.OnClickListener: Interface definition for a callback to be invoked when a view is clicked. 
+  Class Details: http://developer.android.com/reference/android/view/View.OnClickListener.html
+
+  Bundle: Generally used for passing data between various Activities of android
+  Class Details: http://developer.android.com/reference/android/os/Bundle.html
+
+  IntentIntegrator: A utility class which helps ease integration with Barcode Scanner. 
+  This is a simple way to invoke barcode scanning and receive the result,
+  without any need to integrate, modify, or learn the project's source code.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/integration/android/IntentIntegrator.html
+
+  IntentResult: Encapsulates the result of a barcode scan invoked through IntentIntegrator
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/integration/android/IntentResult.html
+
+  Toast: A toast provides simple feedback about an operation in a small popup.
+  Class details: http://developer.android.com/reference/android/widget/Toast.html 
+*/

@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import edu.sxccal.qrcodescanner.R;
 
+//The about section of the app 
 public class About extends Activity
 {	
 	protected void onCreate(Bundle savedInstanceState) 

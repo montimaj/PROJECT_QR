@@ -20,8 +20,6 @@
        android:layout_centerHorizontal="true"
        android:background="#463E3F"
        android:textColor="#FFFFFF"
-       android:textIsSelectable="true" />
-	
-    
+       android:textIsSelectable="true" />   
     
 </RelativeLayout>

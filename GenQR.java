@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -6,11 +8,15 @@ import com.oracle.GenSig;
 import edu.sxccal.utilities.ZipCreator;
 import edu.sxccal.utilities.ImgtoBlackandWhite;
 
-import com.google.zxing.*;
-import com.google.zxing.client.j2se.*;
-import com.google.zxing.common.*;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
 class QRCode 
 {	
   public static void gen_qrcode(String[] args) throws WriterException, IOException, NotFoundException
@@ -44,7 +50,7 @@ class GenQR
 {
   public static boolean is_image(String s)
   {
-    String ext=s.substring(s.indexOf('.')+1,s.length());
+    String ext=s.substring(s.indexOf('.')+1,s.length()); //get file extension
     if(ext.equalsIgnoreCase("jpg") || ext.equalsIgnoreCase("jpeg") || ext.equalsIgnoreCase("png"))
       return true;
     return false;
@@ -67,9 +73,7 @@ class GenQR
       String files[]={pubkey,sign,args[0]};
       ZipCreator.create_zip(zipin,files); //create result.zip
       String f[]={zipin,filePath};
-      File f1=new File(pubkey),f2=new File(sign);
-      f1.delete(); //delete 'sig' and 'suepk'
-      f2.delete();      
+      File f1=new File(pubkey),f2=new File(sign);      
       QRCode.gen_qrcode(f); //generate QRCode image          
     }
     catch(Exception e)
@@ -78,3 +82,32 @@ class GenQR
     }
   }
 }
+
+/*		***		LIBRARY OVERVIEW	***	                              		   */
+
+/*MatrixToImageWriter: Writes a BitMatrix to BufferedImage, file or stream.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/client/j2se/MatrixToImageWriter.html
+
+  BitMatrix: Represents a 2D matrix of bits.  
+  Internally the bits are represented in a 1-D array of 32-bit ints. 
+  The ordering of bits is row-major.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/common/BitMatrix.html
+
+  QRCodeWriter: Renders a QR Code as a BitMatrix 2D array of greyscale values.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/qrcode/QRCodeWriter.html
+
+  EncodeHintType: These are a set of hints that you may pass to QRCodeWriter to specify its behavior.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/EncodeHintType.html
+  
+  BarcodeFormat: Specifies the barcode format(Ex: QR_CODE, AZTEC etc)
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/BarcodeFormat.html
+
+  ErrorCorrectionLevel: This enum encapsulates the four error correction levels defined by the QR code standard.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/qrcode/decoder/ErrorCorrectionLevel.html
+
+  HashMap: Hash table based implementation of the Map interface. 
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html
+
+  Map: Maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. 
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/util/Map.html
+*/

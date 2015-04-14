@@ -13,11 +13,14 @@ import android.view.inputmethod.EditorInfo;
 import edu.sxccal.qrcodescanner.R;
 import edu.sxccal.qrcodescanner.QRCode;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
 
-import com.google.zxing.*;
-import com.google.zxing.common.*;
-import com.google.zxing.qrcode.*;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.QRCodeReader;
 
 public class DecodeQR extends Activity 
 {	
@@ -90,3 +93,40 @@ public class DecodeQR extends Activity
 		}
 	}
 }
+
+/*								***		LIBRARY OVERVIEW	***	                              						*/
+
+/*EditText: EditText is a thin veneer over TextView that configures itself to be editable. 
+  Class Details: http://developer.android.com/reference/android/widget/EditText.html
+  
+  KeyEvent: Used to report key and button events.   
+  Class Details: http://developer.android.com/reference/android/view/KeyEvent.html
+
+  EditorInfo: Describes several attributes of a text editing object that an input method 
+  is communicating with (typically an EditText), 
+  most importantly the type of text content it contains and the current cursor position. 
+  Class Details: http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html
+
+  TextView.OnEditorActionListener: Interface definition for a callback to be invoked 
+  when an action is performed on the editor. 
+  Class Details: http://developer.android.com/reference/android/widget/TextView.OnEditorActionListener.html
+
+  BitMap: http://developer.android.com/reference/android/graphics/Bitmap.html
+
+  BitMapFactory: Creates Bitmap objects from various sources, including files, streams, and byte-arrays. 
+  Class Details: http://developer.android.com/reference/android/graphics/BitmapFactory.html
+
+  RGBLuminanceSource: Used to help decode images from files which arrive as RGB data from an ARGB pixel array.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/RGBLuminanceSource.html
+  
+  BinaryBitMap: The core bitmap class used by ZXing to represent 1 bit data. 
+  Reader objects accept a BinaryBitmap and attempt to decode it.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/BinaryBitmap.html
+  
+  Result: Encapsulates the result of decoding a barcode within an image.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/Result.html
+  
+  QRCodeReader: Detects and decodes QR Codes in an image.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/qrcode/QRCodeReader.html
+ */
+ 

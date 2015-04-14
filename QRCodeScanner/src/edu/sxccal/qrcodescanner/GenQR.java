@@ -2,7 +2,8 @@ package edu.sxccal.qrcodescanner;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.TextView.OnEditorActionListener;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;

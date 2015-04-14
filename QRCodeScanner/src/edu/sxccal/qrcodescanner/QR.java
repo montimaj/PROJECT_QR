@@ -3,9 +3,12 @@ package edu.sxccal.qrcodescanner;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+
 import com.oracle.android.GenSig;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.RandomAccessFile;
+import java.io.IOException;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -61,3 +64,30 @@ public class QR
 		return data;
 	}	
 }
+/*								***		LIBRARY OVERVIEW	***	                              						*/
+
+/*RandomAccessFile: Instances of this class support both reading and writing to a random access file
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/io/RandomAccessFile.html
+
+  BitMap.Config: Possible bitmap configurations. A bitmap configuration describes how pixels are stored.
+  This affects the quality (color depth) as well as the ability to display transparent/translucent colors. 
+  ARGB_8888: Each pixel is stored on 4 bytes.  
+  Class Details: http://developer.android.com/reference/android/graphics/Bitmap.Config.html
+  
+  BitMap.CompressFormat: Specifies the known formats a bitmap can be compressed into 
+  Class Details: http://developer.android.com/reference/android/graphics/Bitmap.CompressFormat.html
+
+  Color: The Color class defines methods for creating and converting color ints
+  Class Details: http://developer.android.com/reference/android/graphics/Color.html
+  
+  BitMatrix: Represents a 2D matrix of bits.  
+  Internally the bits are represented in a 1-D array of 32-bit ints. 
+  The ordering of bits is row-major.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/common/BitMatrix.html
+
+  QRCodeWriter: Renders a QR Code as a BitMatrix 2D array of greyscale values.
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/qrcode/QRCodeWriter.html
+  
+  BarcodeFormat: Specifies the barcode format(Ex: QR_CODE, AZTEC etc)
+  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/BarcodeFormat.html
+*/

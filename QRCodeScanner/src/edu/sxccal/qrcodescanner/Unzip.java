@@ -1,6 +1,11 @@
 package edu.sxccal.qrcodescanner;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.File;
+import java.io.IOException;
+
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -59,3 +64,12 @@ public class Unzip
         bos.close();
     }    
 }
+/*								***		LIBRARY OVERVIEW	***	                              						*/
+
+/*java.util.zip: Provides classes for reading and writing the standard ZIP and GZIP file formats.
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/util/zip/package-summary.html
+
+  BufferedOutputStream: Setting up such an output stream, an application can write bytes 
+  to the underlying output stream without necessarily causing a call to the underlying system for each byte written.
+  Class Details: https://docs.oracle.com/javase/7/docs/api/java/io/BufferedOutputStream.html
+*/

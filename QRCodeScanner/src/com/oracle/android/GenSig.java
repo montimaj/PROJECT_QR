@@ -1,9 +1,19 @@
 package com.oracle.android;
 
-import java.io.*;
-import java.security.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedInputStream;
 
-import edu.sxccal.qrcodescanner.*;
+import java.security.SecureRandom;
+import java.security.KeyPairGenerator;
+import java.security.Signature;
+import java.security.KeyPair;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
+import edu.sxccal.qrcodescanner.QRCode;
+import edu.sxccal.qrcodescanner.GenQR;
+import edu.sxccal.qrcodescanner.Log;
 //Creates 'sig' and 'suepk' files
 public class GenSig
 {
@@ -49,3 +59,25 @@ public class GenSig
 	  }        
     }
 }
+
+/*								***		LIBRARY OVERVIEW	***	                              						*/
+
+/*SecureRandom: provides a cryptographically strong random number generator (RNG). 
+  Class Details: https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
+
+  KeyPairGenerator: Generates pairs of public and private keys.
+  KeyPairGenerator.initialize(int keysize, SecureRandom random): Initializes the key pair generator 
+  for a certain keysize with the given source of randomness 
+  Class Details: https://docs.oracle.com/javase/7/docs/api/java/security/KeyPairGenerator.html  
+
+  KeyPair: Simple holder for a key pair (a public key and a private key).
+  Class Details: https://docs.oracle.com/javase/7/docs/api/java/security/KeyPair.html
+  
+  Signature: Used to provide applications the functionality of a digital signature algorithm
+  Class Details: https://docs.oracle.com/javase/7/docs/api/java/security/Signature.html
+  
+  BufferedInputStream: A BufferedInputStream adds functionality to another input stream
+  Class Details: docs.oracle.com/javase/7/docs/api/java/io/BufferedInputStream.html
+*/
+
+  
