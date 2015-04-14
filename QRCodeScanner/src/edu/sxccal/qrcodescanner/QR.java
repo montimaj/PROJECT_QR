@@ -61,7 +61,7 @@ public class QR
 		return data;
 	}
 }
-/*								***		LIBRARY OVERVIEW	***	                              						*/
+/*				***		LIBRARY OVERVIEW	***	 			*/
 
 /*RandomAccessFile: Instances of this class support both reading and writing to a random access file
   Class Details: http://docs.oracle.com/javase/7/docs/api/java/io/RandomAccessFile.html
