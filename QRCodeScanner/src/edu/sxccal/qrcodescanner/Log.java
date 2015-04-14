@@ -28,7 +28,7 @@ public class Log
      }      	
 }
 
-/*								***		LIBRARY OVERVIEW	***	                              						*/
+/*				***		LIBRARY OVERVIEW	***	    */
 
 /*PrintWriter: Prints formatted representations of objects to a text-output stream
   Class Details: http://docs.oracle.com/javase/7/docs/api/java/io/PrintWriter.html
