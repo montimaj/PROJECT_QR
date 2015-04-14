@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.File;
-import java.io.IOException;
 
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -13,46 +12,38 @@ import java.util.zip.ZipInputStream;
 public class Unzip
 {    
     private static final int BUFFER_SIZE = 4096;      
-    public static String[] unzip(String zipFilePath, String destDirectory) 
+    public static String[] unzip(String zipFilePath, String destDirectory) throws Exception
     {    	
     	String f1=destDirectory + "/suepk";
     	String f2=destDirectory + "/sig";
     	String f3="";
-    	try
-        {	    	
-	        ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath));
-	        ZipEntry entry = zipIn.getNextEntry();    	        
-	        while (entry != null) 
-	        {
-	            String ent=entry.getName(),filePath = destDirectory + "/" + ent;
-	            boolean flag=true;
-	            if(ent.equals("suepk") || ent.equals("sig"))
-	            		flag=false;
-	            if (!entry.isDirectory()) 
-	            {                
-	                if(flag)	             
-	                	f3=filePath;	               
-	            	extractFile(zipIn, filePath);
-	            } 
-	            else 
-	            {                
-	                File dir = new File(filePath);
-	                dir.mkdir();
-	            }
-	            zipIn.closeEntry();
-	            entry = zipIn.getNextEntry();
+    	ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath));
+	    ZipEntry entry = zipIn.getNextEntry();    	        
+	    while (entry != null) 
+	    {
+	    	String ent=entry.getName(),filePath = destDirectory + "/" + ent;
+	        boolean flag=true;
+	        if(ent.equals("suepk") || ent.equals("sig"))
+	        	flag=false;
+	        if (!entry.isDirectory()) 
+	        {                
+	        	if(flag)	             
+	            f3=filePath;	               
+	            extractFile(zipIn, filePath);
+	        } 
+	        else 
+	        {                
+	        	File dir = new File(filePath);
+	            dir.mkdir();
 	        }
-	        zipIn.close();	       
-	        
-        }
-        catch(Exception e)
-        {
-        	e.printStackTrace();
-        }
+	        zipIn.closeEntry();
+	        entry = zipIn.getNextEntry();
+	    }
+	    zipIn.close();                
     	String files[]={f1,f2,f3};    	
         return files;
     }    
-    private static void extractFile(ZipInputStream zipIn, String filePath) throws IOException
+    private static void extractFile(ZipInputStream zipIn, String filePath) throws Exception
     {
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
         byte[] bytesIn = new byte[BUFFER_SIZE];

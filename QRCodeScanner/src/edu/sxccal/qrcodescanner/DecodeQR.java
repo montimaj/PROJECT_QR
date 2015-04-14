@@ -22,6 +22,8 @@ import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 
+/*This module decodes a QRCode image and stores it in Decoded directory as "decoded.txt" */
+
 public class DecodeQR extends Activity 
 {	
 	private EditText et;
@@ -51,8 +53,9 @@ public class DecodeQR extends Activity
 	{
 			
 		try
-		{
+		{			
 			tv= (TextView)findViewById(R.id.dqr);
+			tv.setText("");
 			Bitmap bmp=BitmapFactory.decodeFile(f); //import QRCode image file
 			int width = bmp.getWidth(), height = bmp.getHeight();
 	        int[] pixels = new int[width * height];
@@ -68,29 +71,22 @@ public class DecodeQR extends Activity
 		}
 		catch(Exception e)
 		{
-			Log.create_log(e, tv);
+			Log.create_log(e, getApplicationContext());
 		}
 	}	
-	public static void write_to_file(String s)
+	public void write_to_file(String s) throws Exception 
 	{
-		try
-		{
-			String dfile=QRCode.filePath+"/Decoded";
-			File dir=new File(dfile);
-			if(!dir.exists())
-				dir.mkdir();
-			dfile+="/decoded.txt";
-			File file=new File(dfile);
-			FileOutputStream fp=new FileOutputStream(file);
-			for(int i=0;i<s.length();++i)
-			  fp.write(s.charAt(i));
-			fp.close();
-			tv.append(dfile);
-		}
-		catch(Exception e)
-		{
-			Log.create_log(e, tv);
-		}
+		String dfile=QRCode.filePath+"/Decoded";
+		File dir=new File(dfile);
+		if(!dir.exists())
+			dir.mkdir();
+		dfile+="/decoded.txt";
+		File file=new File(dfile);
+		FileOutputStream fp=new FileOutputStream(file);
+		for(int i=0;i<s.length();++i)
+		  fp.write(s.charAt(i));
+		fp.close();
+		tv.append(dfile);
 	}
 }
 

@@ -30,7 +30,7 @@ public class Verify extends Activity
 		    {		        
 		        if (actionId == EditorInfo.IME_ACTION_DONE)
 		        {
-		            verify_data(); //			            
+		            verify_data();		            
 		            return true;
 		        }
 		        return false;
@@ -42,6 +42,14 @@ public class Verify extends Activity
 		String f3= et.getText().toString();	
 		String f1=QRCode.filePath + "/suepk", f2=QRCode.filePath + "/sig", files[]={f1,f2,f3};	//get absolute paths of the files
 		tv= (TextView)findViewById(R.id.file_verify);
-		VerSig.verify(files);		
+		tv.setText("");
+		try
+		{
+			VerSig.verify(files);
+		}
+		catch(Exception e)
+		{
+			Log.create_log(e, getApplicationContext());
+		}
 	}	
 }

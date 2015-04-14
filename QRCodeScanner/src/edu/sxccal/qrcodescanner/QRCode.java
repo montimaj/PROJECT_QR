@@ -8,6 +8,7 @@ import edu.sxccal.qrcodescanner.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -27,16 +28,13 @@ public class QRCode extends Activity implements OnClickListener
     
 	protected void onCreate(Bundle savedInstanceState)
 	{
-        super.onCreate(savedInstanceState);
-        
+        super.onCreate(savedInstanceState);        
         //load the main activity layout
-        setContentView(R.layout.activity_qr);
-        
+        setContentView(R.layout.activity_qr);        
         //Create directory 
         File dir=new File(QRCode.filePath);
         if(!dir.exists())
-        	dir.mkdir();
-        
+        	dir.mkdir();        
         //Check which button is pressed
         scanBtn = (Button)findViewById(R.id.scan_button);           
         tv=(TextView)findViewById(R.id.file_write);       
@@ -91,23 +89,31 @@ public class QRCode extends Activity implements OnClickListener
 				{
 					write_to_file();	        			
 					String zipin=filePath+"/result.zip";
-					String files[]=Unzip.unzip(zipin, filePath);
-					if(files[2].equals(""))
-						tv.setText("Image was not scanned properly.Try again!");
-					else
-						tv.setText("Decoded files are: \n"+files[0]+"\n"+files[1]+"\n"+files[2]);						
-				}
-				else
-					tv.setText("Device doesn't support read/write!");
+					try
+					{
+						String files[]=Unzip.unzip(zipin, filePath);
+						if(files[2].equals(""))
+							tv.setText("Image was not scanned properly.Try again!");
+						else
+							tv.setText("Decoded files are: \n"+files[0]+"\n"+files[1]+"\n"+files[2]);	
+					}
+					catch(Exception e)
+					{
+						Log.create_log(e,getApplicationContext());
+					}
+				}									
 			}
 			else
-			{
-			    Toast toast = Toast.makeText(getApplicationContext(),
-			        "No scan data received!", Toast.LENGTH_SHORT);
-			    toast.show();		    
-			}	
-		}		
-	}   
+				tv.setText("Device doesn't support read/write!");
+		}
+		else
+		{
+		    Toast toast = Toast.makeText(getApplicationContext(),"No scan data received!", Toast.LENGTH_SHORT);
+		    toast.setGravity(Gravity.CENTER,0,0);
+		    toast.show();		    
+		}	
+	}
+	
 	public boolean checkExternalMedia() //checks if there is read and write access to device storage
 	{
 		    boolean readable = false;
@@ -141,7 +147,7 @@ public class QRCode extends Activity implements OnClickListener
 		    } 
 		    catch(Exception e)
 		    {		    	
-		    	Log.create_log(e, tv); //Write logs to log.txt
+		    	Log.create_log(e, getApplicationContext()); //Write logs to log.txt
 		    }
 		    tv.append("\n\nFile written to "+file);
 	}	
