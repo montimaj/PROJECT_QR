@@ -39,8 +39,9 @@ public class Verify extends Activity
 	}
 	public void verify_data()
 	{
-		String f3= et.getText().toString();	
-		String f1=QRCode.filePath + "/suepk", f2=QRCode.filePath + "/sig", files[]={f1,f2,f3};	//get absolute paths of the files
+		String f3= et.getText().toString();
+		//get absolute paths of the files
+		String f1=QRCode.filePath + "/suepk", f2=QRCode.filePath + "/sig", files[]={f1,f2,f3};
 		tv= (TextView)findViewById(R.id.file_verify);
 		tv.setText("");
 		try
