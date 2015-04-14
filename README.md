@@ -5,14 +5,19 @@ Generate QR code from various files and verify the authenticity of the file usin
 The digital signatute scheme has been implemented using:
 
 -> Encryption Algorithm: RSA
+
 -> Hash Algorithm: SHA-1
+
 -> Keysize: 3072-bit
 
 System requirements for PC:
 
 -> Linux
+
 -> JDK 1.7 or above
+
 -> GTK+
+
 -> gtkdialog
 
 Start the GUI by executing start.sh via the terminal(Ex:  foo@bar:~$ ./start.sh )
@@ -28,6 +33,8 @@ Decoding any QRCode is also possible via the app!
 Android smartphone requirements: 
 
 -> Android API 15 or above
+
 -> BarcodeScanner app by zxing
    ( https://play.google.com/store/apps/details?id=com.google.zxing.client.android&hl=en )
+
 -> A good built-in camera
