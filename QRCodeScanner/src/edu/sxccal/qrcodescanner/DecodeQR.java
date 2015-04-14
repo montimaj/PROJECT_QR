@@ -51,19 +51,18 @@ public class DecodeQR extends Activity
 	}
 	public void decode_qr(String f)
 	{
-			
 		try
 		{			
 			tv= (TextView)findViewById(R.id.dqr);
 			tv.setText("");
 			Bitmap bmp=BitmapFactory.decodeFile(f); //import QRCode image file
 			int width = bmp.getWidth(), height = bmp.getHeight();
-	        int[] pixels = new int[width * height];
-	        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
-	        bmp.recycle();
-	        bmp = null;
-	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //Zxing libraries
-	        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+	        	int[] pixels = new int[width * height];
+	        	bmp.getPixels(pixels, 0, width, 0, 0, width, height);
+	        	bmp.recycle();
+		 	bmp = null;
+	        	RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //Zxing libraries
+	        	BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 			Result qr_result = new QRCodeReader().decode(bitmap);
 			tv.setText("Successfully Decoded!\n");
 			tv.append("Decoded file is at:\n");
@@ -90,7 +89,7 @@ public class DecodeQR extends Activity
 	}
 }
 
-/*								***		LIBRARY OVERVIEW	***	                              						*/
+/*		***		LIBRARY OVERVIEW	***					*/
 
 /*EditText: EditText is a thin veneer over TextView that configures itself to be editable. 
   Class Details: http://developer.android.com/reference/android/widget/EditText.html
