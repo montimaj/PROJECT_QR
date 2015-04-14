@@ -28,7 +28,6 @@ Start the GUI by executing start.sh via the terminal(Ex:  foo@bar:~$ ./start.sh 
 QRCodeScanner is the source for the android app. The app can be used to generate QRCode image and digital signature, public key similar to the PC version. 
 
 The scan feature of the app is restricted to scanning QRCodes of zip files that contain a file, its detached digital signature('sig') and the public key('suepk') only. 
-
 Any other QRCode scanning will result in an error which will be displayed on the screen!
 
 Decoding any QRCode is also possible via the app!
