@@ -65,12 +65,12 @@ public class GenQR extends Activity implements Runnable
 		}
 		handler.sendEmptyMessage(0);
 	}
-	 private static Handler handler = new Handler() {
-         @Override
-         public void handleMessage(Message msg) {
-                 dialog.dismiss();
-                 tv.setText(QR.str);
-
-         }
- };	
+	private static Handler handler = new Handler()
+	{
+         	public void handleMessage(Message msg)
+         	{
+                 	dialog.dismiss();
+                 	tv.setText(QR.str);
+         	}
+ 	};	
 }
