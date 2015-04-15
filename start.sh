@@ -48,54 +48,80 @@ export MAIN_DIALOG='
     </vbox>
     
     <vbox>
-    
-      <frame Choose File to be Tested>
-	<hbox>
-	  <entry>
-	    <variable>XFILE</variable>
-	  </entry>
-	  <button>
-	    <input file stock="gtk-open"></input>
-	    <variable>xfile</variable>
-	    <action type="fileselect">XFILE</action>
-	  </button>
-	</hbox>
-      </frame>
+      <expander label="Extract Zip" expanded="false" use-underline="true">
+	<frame Unzip>
+	  <hbox>
+	    <entry>
+	      <variable>ZFILE</variable>
+	    </entry>
+	    <button>
+	      <input file stock="gtk-open"></input>
+	      <variable>zfile</variable>
+	      <action type="fileselect">ZFILE</action>
+	    </button>
+	  </hbox>
+	  <vbox>
+	    <button>
+	      <height>20</height>
+	      <width>40</width>
+	      <label>Extract</label>
+	      <action signal="clicked">unzip -o $ZFILE -d $(dirname $ZFILE); zenity --info --text="Unzip Successful!"</action>
+	    </button>
+	  </vbox>
+	</frame>
+      </expander>
       
-      <frame Choose Corresponding Signature>
-	<hbox>
-	  <entry>
-	    <variable>XSIG</variable>
-	  </entry>
-	  <button>
-	    <input file stock="gtk-open"></input>
-	    <variable>pkey</variable>
-	    <action type="fileselect">XSIG</action>
-	  </button>
-	</hbox>
-      </frame>
+      <expander label="Verfication" expanded="true">
+	<vbox>
+	  <frame Choose File to be Tested>
+	    <hbox>
+	      <entry>
+		<variable>XFILE</variable>
+	      </entry>
+	      <button>
+		<input file stock="gtk-open"></input>
+		<variable>xfile</variable>
+		<action type="fileselect">XFILE</action>
+	      </button>
+	    </hbox>
+	  </frame>
+      
+	  <frame Choose Corresponding Signature>
+	    <hbox>
+	      <entry>
+		<variable>XSIG</variable>
+	      </entry>
+	      <button>
+		<input file stock="gtk-open"></input>
+		<variable>pkey</variable>
+		<action type="fileselect">XSIG</action>
+	      </button>
+	    </hbox>
+	  </frame>
     
-      <frame Choose Appropriate Public Key>
-	<hbox>
-	  <entry>
-	    <variable>PKEY</variable>
-	  </entry>
-	  <button>
-	    <input file stock="gtk-open"></input>
-	    <variable>pkey</variable>
-	    <action type="fileselect">PKEY</action>
-	  </button>
-	</hbox>
-      </frame>
+	  <frame Choose Appropriate Public Key>
+	    <hbox>
+	      <entry>
+		<variable>PKEY</variable>
+	      </entry>
+	      <button>
+		<input file stock="gtk-open"></input>
+		<variable>pkey</variable>
+		<action type="fileselect">PKEY</action>
+	      </button>
+	    </hbox>
+	  </frame>
     
-      <vbox>
-	<button>
-	  <height>20</height>
-	  <width>40</width>
-	  <label>Verify</label>
-	  <action signal="clicked">clear && java Verify $XFILE $XSIG $PKEY </action>
-	</button>
-      </vbox>
+	  <vbox>
+	    <button>
+	      <height>20</height>
+	      <width>40</width>
+	      <label>Verify</label>
+	      <action signal="clicked">clear && java Verify $XFILE $XSIG $PKEY</action>
+	    </button>
+	  </vbox>
+	 </vbox>
+      </expander>
     
     </vbox>
    
