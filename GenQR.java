@@ -87,6 +87,8 @@ class GenQR
       Process p2=r.exec("zenity --info --text="+"Success!");
       p1.destroy();
       p2.waitFor();
+      p1=r.exec("xdg-open "+args[1]+"/QRCode.png");
+      p1.waitFor();
     }
     catch(Exception e)
     {

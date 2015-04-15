@@ -40,7 +40,7 @@ export MAIN_DIALOG='
 	  <height>20</height>
 	  <width>40</width>
 	  <label>Generate</label>
-	  <action signal="clicked">clear && java GenQR $FILE $FILE_DIRECTORY; xdg-open $FILE_DIRECTORY/QRCode.png</action>
+	  <action signal="clicked">clear && java GenQR $FILE $FILE_DIRECTORY</action>
 	  <variable>"flag"</variable>
 	</button>
       </vbox>
