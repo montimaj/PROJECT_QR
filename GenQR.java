@@ -56,8 +56,10 @@ class GenQR
   {
     try
     {
-      if(args.length<2)
-	throw new Exception("Invalid input");
+      if(args.length<2) 
+	throw new Exception("Invalid input!");
+      if(!(new File(args[0])).exists())
+	throw new Exception("File names should not have spaces!");
       Runtime r=Runtime.getRuntime();
       Process p1=r.exec("zenity --progress --pulsate --no-cancel --text="+"Generating");
       String filePath = args[1]; 
