@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.sxccal.qrcodescanner"
     android:versionCode="2"
-    android:versionName="Secured QR" >
+    android:versionName="2.1" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -13,7 +13,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/cryptography"
         android:label="@string/app_name" >
         <activity
             android:name=".QRCode"

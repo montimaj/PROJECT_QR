@@ -32,14 +32,14 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>res/drawable-hdpi/encrypt.png</name>
+			<type>1</type>
+			<location>/home/monti/Monti_Backup/PROGS/Android/encrypt.png</location>
+		</link>
+		<link>
 			<name>res/drawable-hdpi/git.png</name>
 			<type>1</type>
 			<location>/home/monti/Monti_Backup/PROGS/Android/git.png</location>
-		</link>
-		<link>
-			<name>res/drawable-hdpi/sxc.jpg</name>
-			<type>1</type>
-			<location>/home/monti/Monti_Backup/PROGS/Android/sxcLogo150yrs.jpg</location>
 		</link>
 	</linkedResources>
 </projectDescription>

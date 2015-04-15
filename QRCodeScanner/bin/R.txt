@@ -334,9 +334,9 @@ int drawable abc_textfield_default_mtrl_alpha 0x7f02002f
 int drawable abc_textfield_search_activated_mtrl_alpha 0x7f020030
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f020031
 int drawable abc_textfield_search_material 0x7f020032
-int drawable git 0x7f020033
-int drawable ic_launcher 0x7f020034
-int drawable sxc 0x7f020035
+int drawable cryptography 0x7f020033
+int drawable encrypt 0x7f020034
+int drawable git 0x7f020035
 int id TextView01 0x7f09003f
 int id ab 0x7f090047
 int id about 0x7f090040
