@@ -36,7 +36,7 @@ Decoding any QRCode is also possible via the app!
 
 Android smartphone requirements: 
 
--> Android API 15 or above
+-> Android API 17 or above
 
 -> BarcodeScanner app by zxing
    ( https://play.google.com/store/apps/details?id=com.google.zxing.client.android&hl=en )
