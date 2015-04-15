@@ -1,7 +1,8 @@
 package edu.sxccal.qrcodescanner;
 
-import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -14,16 +15,13 @@ public class Log
 		try
 		 {		 
 			 String log=QRCode.filePath+"/log.txt"; //create log file
-			 String s="Oops!\nErrors have been detected\nCheck: "+log;
-			 FileOutputStream fp=new FileOutputStream(log);
+			 String s="Oops!\nErrors have been detected\nCheck: "+log;			 
 			 Toast toast = Toast.makeText(context,s,Toast.LENGTH_SHORT);
 			 toast.setGravity(Gravity.CENTER,0,0);
-			 toast.show();			 
-			 PrintWriter pw=new PrintWriter(fp,true);
-			 pw.write(e.toString()+"\n");
-			 pw.flush();
-			 pw.close();
-			 fp.close();			 
+			 toast.show();		 
+			 PrintWriter pw=new PrintWriter((new BufferedWriter(new FileWriter(log, true))));
+			 pw.println("-> "+e.toString());			
+			 pw.close();			 			 
 		 }catch(Exception e2){}
      }      	
 }

@@ -88,3 +88,33 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
          	}
  	};	
 }
+
+/*			***		LIBRARY OVERVIEW	***	               				*/
+
+/*Thread: A Thread is a concurrent unit of execution.
+  It has its own call stack for methods being invoked, their arguments and local variables
+  The start() method must be called to actually execute the new Thread. 
+  Class Details: http://developer.android.com/reference/java/lang/Thread.html
+
+  Runnable: Represents a command that can be executed.
+  Often used to run code in a different Thread.
+  Interface Details: http://developer.android.com/reference/java/lang/Runnable.html
+  
+  Handler: Used to send and process Message and Runnable objects associated with a thread's MessageQueue
+  Class Details: http://developer.android.com/reference/android/os/Handler.html
+  
+  Message: Defines a message containing a description and arbitrary data object
+  that can be sent to a Handler
+  Class Details: http://developer.android.com/reference/android/os/Message.html
+  
+  ProgressDialog: A dialog showing a progress indicator and an optional text message or view. 
+  Only a text message or a view can be used at the same time.
+  The dialog can be made cancelable on back key press.
+  Class Details: http://developer.android.com/reference/android/app/ProgressDialog.html
+  
+  Intent.ACTION_GET_CONTENT: Allows the user to select a particular kind of data and return it. 
+  Class Details: http://developer.android.com/reference/android/content/Intent.html
+*/
+  
+   
+

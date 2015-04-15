@@ -6,6 +6,7 @@ import java.util.Map;
 import com.oracle.GenSig;
 import edu.sxccal.utilities.ZipCreator;
 import edu.sxccal.utilities.ImgtoBlackandWhite;
+import edu.sxccal.utilities.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -19,8 +20,7 @@ class QRCode
   public static void gen_qrcode(String[] args) throws Exception
   {		
     String charset = "ISO-8859-1", file = args[1]+"/QRCode.png", data = args[0]; //ISO-8859-1 is used to encode bytes read from the input file, args[1] is the directory path of the QR image
-    data=read_from_file(data, charset);		
-    System.out.println("Result.zip size= "+data.length()+" bytes");
+    data=read_from_file(data, charset);   
     Map<EncodeHintType, ErrorCorrectionLevel> hint_map1 = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
     hint_map1.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L); //hints used by QRCodeWriter.encode for efficient generation of the QRCode image
     createQRCode(data, file,hint_map1,500,500);
@@ -56,28 +56,41 @@ class GenQR
   {
     try
     {
+      if(args.length<2)
+	throw new Exception("Invalid input");
+      Runtime r=Runtime.getRuntime();
+      Process p1=r.exec("zenity --progress --pulsate --no-cancel --text="+"Generating");
       String filePath = args[1]; 
-      File dir = new File(filePath);
+      File dir = new File(filePath), file=new File(args[0]);      
       if(!dir.exists())
-	dir.mkdir(); //create directory to store 'sig' and 'suepk'      
+	dir.mkdir(); //create directory to store 'sig' and 'suepk' 
       if(is_image(args[0]))
       {
 	//if the input file is an image convert it to black and white image
       	args[0]=ImgtoBlackandWhite.toBW(args[0],filePath);
+      	file=new File(args[0]);
       }      
+      if(file.length()>3000) //File size must be less than 3KB
+      {
+	p1.destroy();
+	throw new Exception("File too large!");	
+      }
       GenSig.Gen_sig(args[0],filePath);
       String pubkey=filePath+"/suepk",sign=filePath+"/sig",zipin=filePath+"/result.zip";      
       String files[]={pubkey,sign,args[0]};
       ZipCreator.create_zip(zipin,files); //create result.zip
       String f[]={zipin,filePath};
       File f1=new File(pubkey),f2=new File(sign);      
-      QRCode.gen_qrcode(f); //generate QRCode image          
+      QRCode.gen_qrcode(f); //generate QRCode image 
+      Process p2=r.exec("zenity --info --text="+"Success!");
+      p1.destroy();
+      p2.waitFor();
     }
     catch(Exception e)
     {
-      Runtime r=Runtime.getRuntime(); 
-      String s="zenity --error --text="+"Retry!";
-      Process p=r.exec(s);
+      Runtime r=Runtime.getRuntime();
+      String s=Log.create_log(e);
+      Process p=r.exec("zenity --error --text="+s);   
       p.waitFor();
     }    
   }
@@ -110,4 +123,16 @@ class GenQR
 
   Map: Maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. 
   Class Details: http://docs.oracle.com/javase/7/docs/api/java/util/Map.html
+  
+  Runtime: Every Java application has a single instance of class Runtime that allows the application to interface
+  with the environment in which the application is running. 
+  The current runtime can be obtained from the getRuntime method.
+  An application cannot create its own instance of this class.
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html
+  
+  Process: Runtime.exec create a native process and return an instance of a subclass of Process 
+  that can be used to control the process and obtain information about it
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html
+  zenity --progress --no-cancel --text="Generating QRCode and Signature" --pulsate
+
 */

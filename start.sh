@@ -40,7 +40,7 @@ export MAIN_DIALOG='
 	  <height>20</height>
 	  <width>40</width>
 	  <label>Generate</label>
-	  <action signal="clicked">java GenQR $FILE $FILE_DIRECTORY; xdg-open $FILE_DIRECTORY/QRCode.png</action>
+	  <action signal="clicked">clear && java GenQR $FILE $FILE_DIRECTORY; xdg-open $FILE_DIRECTORY/QRCode.png</action>
 	  <variable>"flag"</variable>
 	</button>
       </vbox>
@@ -93,7 +93,7 @@ export MAIN_DIALOG='
 	  <height>20</height>
 	  <width>40</width>
 	  <label>Verify</label>
-	  <action signal="clicked">java Verify $XFILE $XSIG $PKEY </action>
+	  <action signal="clicked">clear && java Verify $XFILE $XSIG $PKEY </action>
 	</button>
       </vbox>
     

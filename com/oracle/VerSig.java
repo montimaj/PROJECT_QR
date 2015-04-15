@@ -10,7 +10,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class VerSig 
 {
-    public static void verify(String suepk, String sign, String data) throws Exception
+    public static boolean verify(String suepk, String sign, String data) throws Exception
     {       
             FileInputStream keyfis = new FileInputStream(suepk); //import encoded public key
             byte[] encKey = new byte[keyfis.available()];  
@@ -38,7 +38,7 @@ public class VerSig
             }
             bufin.close();
             boolean verifies = sig.verify(sigToVerify);
-            System.out.println("signature verifies: " + verifies);       
+            return verifies;       
     }    
 }
 

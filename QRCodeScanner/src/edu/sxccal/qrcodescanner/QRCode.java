@@ -185,7 +185,7 @@ public class QRCode extends Activity implements OnClickListener
   Class Details: http://developer.android.com/reference/android/os/Environment.html
  
   View.OnClickListener: Interface definition for a callback to be invoked when a view is clicked. 
-  Class Details: http://developer.android.com/reference/android/view/View.OnClickListener.html
+  Interface Details: http://developer.android.com/reference/android/view/View.OnClickListener.html
 
   Bundle: Generally used for passing data between various Activities of android
   Class Details: http://developer.android.com/reference/android/os/Bundle.html
