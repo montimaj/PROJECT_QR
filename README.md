@@ -20,6 +20,8 @@ System requirements for PC:
 
 -> gtkdialog
 
+-> zenity
+
 Start the GUI by executing start.sh via the terminal(Ex:  foo@bar:~$ sh start.sh )
 Alternatively change the permission of 'start.sh' & make it executable($ chmod +x start.sh) for once. Then like any other app, just double click on start.sh to run the GUI.
 
@@ -40,3 +42,5 @@ Android smartphone requirements:
    ( https://play.google.com/store/apps/details?id=com.google.zxing.client.android&hl=en )
 
 -> A good built-in camera
+
+-> Good CPU and RAM
