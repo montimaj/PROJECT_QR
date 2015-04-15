@@ -50,9 +50,9 @@ public class QRCode extends Activity implements OnClickListener
     }	    
 	public void onClick(View v)
 	{
+		tv.setText("");
 		if(v.getId()==R.id.scan_button)
-		{
-			tv.setText("");
+		{			
 			IntentIntegrator scanner = new IntentIntegrator(this); //Zxing android interface library 
 			scanner.initiateScan(); //Requires BarcodeScanner app by Zxing to be installed in the phone			
 		}	
@@ -95,7 +95,7 @@ public class QRCode extends Activity implements OnClickListener
 						if(files[2].equals(""))
 							tv.setText("Image was not scanned properly.Try again!");
 						else
-							tv.setText("Decoded files are: \n"+files[0]+"\n"+files[1]+"\n"+files[2]);	
+							tv.append("\nExtracted files are: \n"+files[0]+"\n"+files[1]+"\n"+files[2]);	
 					}
 					catch(Exception e)
 					{
@@ -149,7 +149,7 @@ public class QRCode extends Activity implements OnClickListener
 		    {		    	
 		    	Log.create_log(e, getApplicationContext()); //Write logs to log.txt
 		    }
-		    tv.append("\n\nFile written to "+file);
+		    tv.append("File written to: "+file);
 	}	
 }
 

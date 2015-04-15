@@ -477,6 +477,7 @@ int string button_save 0x7f0a0014
 int string decode 0x7f0a001d
 int string hello_world 0x7f0a0011
 int string scan 0x7f0a0013
+int string sfile 0x7f0a001e
 int string title_activity_about 0x7f0a0019
 int string title_activity_decode_qr 0x7f0a001c
 int string title_activity_gen_qr 0x7f0a001a

@@ -4,29 +4,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/sxc">
 
-   <EditText
+   <Button
        android:id="@+id/verify_file"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"    
-       android:layout_centerHorizontal="true"           
-       android:inputType="text|textVisiblePassword" 
-       android:textColor="#0C090A"
-       android:textIsSelectable="true" 
-       android:imeOptions="actionDone">
+       android:layout_height="wrap_content"     
+       android:text="@string/sfile"
+       android:background="#0099FF"
+       android:textColor="#FFFFFF"/>
 
-       <requestFocus />
-
-	</EditText>		    
-   <TextView android:id="@+id/file_verify"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:textIsSelectable="true"
-	    android:layout_centerHorizontal="true" 
-	    android:background="#463E3F"	    
-	    android:textColor="#FFFFFF"
-	    android:layout_below="@+id/verify_file"
-	    android:textAlignment="center"
-   		android:textSize="20sp"/>  	 
-	 
+   <TextView
+       android:id="@+id/file_verify"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/verify_file"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="148dp"
+       android:background="#463E3F"
+       android:textColor="#FFFFFF"
+       android:textIsSelectable="true" />
 
 </RelativeLayout>

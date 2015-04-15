@@ -2,39 +2,53 @@ package edu.sxccal.qrcodescanner;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.EditText;
-import android.widget.TextView.OnEditorActionListener;
-import android.view.KeyEvent;
-import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 
 import java.io.File;
 
-public class GenQR extends Activity implements Runnable
-{
-	private EditText et;	
+public class GenQR extends Activity implements Runnable,View.OnClickListener
+{		
 	private static ProgressDialog dialog;
 	public static TextView tv;	
+	private Button bt;
 	private String f;
+	public final int PICKFILE_RESULT_CODE = 1;
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_gen_qr);
-		et=(EditText)findViewById(R.id.genqr);
-		et.setText(QRCode.filePath+"/");
+		setContentView(R.layout.activity_gen_qr);		
 		tv=(TextView)findViewById(R.id.wfile);
-		et.setOnEditorActionListener(new OnEditorActionListener() 
-		{		    
-		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
-		    {		        
-		        if (actionId == EditorInfo.IME_ACTION_DONE)
-		        {		            
-		        	tv.setText("");
-		        	f=et.getText().toString();
-		        	File file=new File(f);
+		bt=(Button)findViewById(R.id.genqr);
+		bt.setOnClickListener(this);       	
+	}
+	public void onClick(View v)
+	{
+		Intent fileintent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileintent.setType("file/*");
+        try 
+        {
+            startActivityForResult(fileintent,PICKFILE_RESULT_CODE);            
+        } 
+        catch (Exception e) 
+        {
+            Log.create_log(e, getApplicationContext());
+        }	
+	}
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{		  
+		  switch(requestCode)
+		  {
+			  case PICKFILE_RESULT_CODE:
+			   if(resultCode==RESULT_OK)
+			   {
+				    f = data.getData().getPath();	
+				    File file=new File(f);
 		        	if(!file.exists())
 		        	{
 		        		tv.setText("");
@@ -42,16 +56,15 @@ public class GenQR extends Activity implements Runnable
 		        	}
 		        	else
 		        	{
-			        	dialog = ProgressDialog.show(GenQR.this, "Generating QRCode, signature...",
+			        	tv.setText("");
+		        		dialog = ProgressDialog.show(GenQR.this, "Generating QRCode, signature...",
 			                     "Please wait!", true,false);	
 			        	Thread thread = new Thread(GenQR.this);		        	
 		                thread.start();
-		        	}
-		        	return true;
-		        }                
-		        return false;
-		    }	    
-		});	
+		        	}		    
+			   }
+			   break;		   
+		  }
 	}
 	public void run()
 	{	
@@ -71,6 +84,7 @@ public class GenQR extends Activity implements Runnable
          	{
                  	dialog.dismiss();
                  	tv.setText(QR.str);
+                 	QR.str="";
          	}
  	};	
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.sxccal.qrcodescanner"
-    android:versionCode="1"
-    android:versionName="1.2" >
+    android:versionCode="2"
+    android:versionName="Secured QR" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -28,8 +28,7 @@
         <activity
             android:name=".Verify"
             android:label="@string/title_activity_ver_sig"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysVisible" >
+            android:screenOrientation="portrait">           
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -41,8 +40,7 @@
         <activity
             android:name=".GenQR"
             android:label="@string/title_activity_gen_qr"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysVisible" >
+            android:screenOrientation="portrait">            
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -50,8 +48,7 @@
         <activity
             android:name=".DecodeQR"
             android:label="@string/title_activity_decode_qr"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysVisible" >            
+            android:screenOrientation="portrait">               
             <intent-filter>
                      <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

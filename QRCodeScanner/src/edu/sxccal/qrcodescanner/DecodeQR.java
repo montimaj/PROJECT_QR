@@ -1,14 +1,13 @@
 package edu.sxccal.qrcodescanner;
 
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView.OnEditorActionListener;
+import android.widget.Button;
 import android.widget.TextView;
-import android.view.KeyEvent;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.view.inputmethod.EditorInfo;
+import android.view.View;
 
 import edu.sxccal.qrcodescanner.R;
 import edu.sxccal.qrcodescanner.QRCode;
@@ -24,30 +23,43 @@ import com.google.zxing.qrcode.QRCodeReader;
 
 /*This module decodes a QRCode image and stores it in Decoded directory as "decoded.txt" */
 
-public class DecodeQR extends Activity 
+public class DecodeQR extends Activity implements View.OnClickListener
 {	
-	private EditText et;
+	private Button bt;
 	public static TextView tv;
-	
+	private final int PICKFILE_RESULT_CODE = 1;
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);	
 		setContentView(R.layout.activity_decode_qr);		
-		et=(EditText)findViewById(R.id.edqr);
-		et.setText(QRCode.filePath+"/");
-		et.setOnEditorActionListener(new OnEditorActionListener() 
-		{		    
-		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
-		    {		        
-		        if (actionId == EditorInfo.IME_ACTION_DONE) //Waits until DONE button is pressed on the keyboard
-		        {
-		        	String f= et.getText().toString(); //stores the filepath in a string
-		        	decode_qr(f);			            
-		            return true;
-		        }
-		        return false;
-		    }
-		});		
+		bt=(Button)findViewById(R.id.edqr);
+		bt.setOnClickListener(this); 	
+	}
+	public void onClick(View v)
+	{
+		Intent fileintent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileintent.setType("file/*");
+        try 
+        {
+            startActivityForResult(fileintent,PICKFILE_RESULT_CODE);            
+        } 
+        catch (Exception e) 
+        {
+            Log.create_log(e, getApplicationContext());
+        }	
+	}
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{		  
+		  switch(requestCode)
+		  {
+			  case PICKFILE_RESULT_CODE:
+			   if(resultCode==RESULT_OK)
+			   {
+				    String f = data.getData().getPath();
+				    decode_qr(f);
+			   }
+			   break;
+		  }
 	}
 	public void decode_qr(String f)
 	{
@@ -57,12 +69,12 @@ public class DecodeQR extends Activity
 			tv.setText("");
 			Bitmap bmp=BitmapFactory.decodeFile(f); //import QRCode image file
 			int width = bmp.getWidth(), height = bmp.getHeight();
-	        	int[] pixels = new int[width * height];
-	        	bmp.getPixels(pixels, 0, width, 0, 0, width, height);
-	        	bmp.recycle();
+	        int[] pixels = new int[width * height];
+	        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
+	        bmp.recycle();
 		 	bmp = null;
-	        	RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //Zxing libraries
-	        	BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //Zxing libraries
+	        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 			Result qr_result = new QRCodeReader().decode(bitmap);
 			tv.setText("Successfully Decoded!\n");
 			tv.append("Decoded file is at:\n");

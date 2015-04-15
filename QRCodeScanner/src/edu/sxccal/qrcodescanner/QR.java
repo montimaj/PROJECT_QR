@@ -21,10 +21,11 @@ public class QR
 	    String data =read_from_file(dataPath,"ISO-8859-1");	    
 	    QRCodeWriter writer = new QRCodeWriter();		    
 		String genqr=QRCode.filePath+"/QRCode.png";
-		BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,500,500);	//Zxing library	    
-		Bitmap bmp = Bitmap.createBitmap(500,500,Bitmap.Config.ARGB_8888); //image size is 500*500 pixels
-		for (int i = 0; i < 500; i++) 		   
-			for (int j = 0; j < 500; j++) 
+		int img_size=500;
+		BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);	//Zxing library	    
+		Bitmap bmp = Bitmap.createBitmap(img_size,img_size,Bitmap.Config.ARGB_8888); //image size is 500*500 pixels
+		for (int i = 0; i < img_size; i++) 		   
+			for (int j = 0; j < img_size; j++) 
 				bmp.setPixel(i, j, bm.get(i, j) ? Color.BLACK: Color.WHITE);		
 		if (bmp != null) 
 		{
@@ -35,7 +36,12 @@ public class QR
 		    bmp.compress(Bitmap.CompressFormat.PNG, 100,gqr);
 		    str+="\nQRCode img: "+genqr;		    		    
 		    gqr.close();
-		}			
+		}
+		else
+		{
+			str="";
+			throw new Exception("QRCode generation failed!");
+		}
 	}
 	public static String read_from_file(String s, String charset) throws Exception
 	{		
