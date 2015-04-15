@@ -1,6 +1,5 @@
 import java.io.FileInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,8 +9,6 @@ import edu.sxccal.utilities.ImgtoBlackandWhite;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
-import com.google.zxing.NotFoundException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -19,7 +16,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 class QRCode 
 {	
-  public static void gen_qrcode(String[] args) throws WriterException, IOException, NotFoundException
+  public static void gen_qrcode(String[] args) throws Exception
   {		
     String charset = "ISO-8859-1", file = args[1]+"/QRCode.png", data = args[0]; //ISO-8859-1 is used to encode bytes read from the input file, args[1] is the directory path of the QR image
     data=read_from_file(data, charset);		
@@ -29,7 +26,7 @@ class QRCode
     createQRCode(data, file,hint_map1,500,500);
     System.out.println("QR Code image created successfully!");	       
   }	
-  public static String read_from_file(String s, String charset) throws IOException
+  public static String read_from_file(String s, String charset) throws Exception
   {
     FileInputStream fp=new FileInputStream(s);
     int c;
@@ -40,7 +37,7 @@ class QRCode
     fp.close();
     return data;
   }	
-  public static void createQRCode(String data, String file, Map<EncodeHintType, ErrorCorrectionLevel> hint_map, int qrh, int qrw) throws WriterException, IOException
+  public static void createQRCode(String data, String file, Map<EncodeHintType, ErrorCorrectionLevel> hint_map, int qrh, int qrw) throws Exception
   {		
     BitMatrix matrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, qrw, qrh, hint_map); //Zxing libraries--> BitMatrix, MatrixToImageWriter
     MatrixToImageWriter.writeToFile(matrix, "png",new File(file));
@@ -55,7 +52,7 @@ class GenQR
       return true;
     return false;
   }
-  public static void main(String args[]) throws IOException //args[0]-> input file directory, args[1]-> output directory
+  public static void main(String args[]) throws Exception //args[0]-> input file directory, args[1]-> output directory
   {
     try
     {
@@ -78,8 +75,11 @@ class GenQR
     }
     catch(Exception e)
     {
-      System.out.println("I/O error!: "+e.toString());
-    }
+      Runtime r=Runtime.getRuntime(); 
+      String s="zenity --error --text="+"Retry!";
+      Process p=r.exec(s);
+      p.waitFor();
+    }    
   }
 }
 

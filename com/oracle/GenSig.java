@@ -13,12 +13,9 @@ import java.security.PublicKey;
 
 public class GenSig
 {
-    public static void Gen_sig(String file,String dest)throws Exception
+    public static void Gen_sig(String file,String dest) throws Exception
     {
-
-        try
-        {
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "SunRsaSign"); //Generate a key pair
+	    KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "SunRsaSign"); //Generate a key pair
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
             keyGen.initialize(3072, random); //initialize a 3072-bit key with a SecureRandom object
             KeyPair pair = keyGen.generateKeyPair(); //generate private and public key
@@ -45,12 +42,7 @@ public class GenSig
             byte[] key = pub.getEncoded();
             FileOutputStream keyfos = new FileOutputStream(dest+"/suepk"); //create 'suepk' file
             keyfos.write(key);//write the public key to 'suepk' file
-            keyfos.close();
-	  }
-	  catch (Exception e)
-	  {
-            System.err.println("Caught exception " + e.toString());
-	  }
+            keyfos.close();  	  
     }
 }
 /*		***		LIBRARY OVERVIEW	***	                              		*/

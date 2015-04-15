@@ -3,17 +3,14 @@ package edu.sxccal.utilities;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.util.zip.ZipOutputStream;
 import java.util.zip.ZipEntry;
 
 //User library to create a zip file	 
 public class ZipCreator
 {   
-  public static void create_zip(String zipFile,String[] infiles) 
-  {    	         
-    try 
-    {      
+  public static void create_zip(String zipFile,String[] infiles) throws Exception
+  {        
       byte[] buffer = new byte[4096];	 
       FileOutputStream fos = new FileOutputStream(zipFile);	 
       ZipOutputStream zos = new ZipOutputStream(fos);	             
@@ -28,12 +25,7 @@ public class ZipCreator
 	zos.closeEntry();              
 	fis.close();	                 
       }           
-      zos.close();	             
-    }
-    catch (IOException e) 
-    {
-      System.out.println("Error creating zip file: " + e.toString());
-    }
+      zos.close();       
   } 
 }
 
