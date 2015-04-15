@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+clear
 export MAIN_DIALOG='
 
 <window title="Authentic QR">
@@ -40,9 +40,7 @@ export MAIN_DIALOG='
 	  <height>20</height>
 	  <width>40</width>
 	  <label>Generate</label>
-	  <action signal="clicked">
-		java GenQR $FILE $FILE_DIRECTORY
-	  </action>
+	  <action signal="clicked">java GenQR $FILE $FILE_DIRECTORY </action>
 	  <variable>"flag"</variable>
 	</button>
       </vbox>
@@ -95,9 +93,7 @@ export MAIN_DIALOG='
 	  <height>20</height>
 	  <width>40</width>
 	  <label>Verify</label>
-	  <action signal="clicked">
-		java VerSig $XFILE $XSIG $PKEY
-	  </action>
+	  <action signal="clicked">java Verify $XFILE $XSIG $PKEY </action>
 	</button>
       </vbox>
     

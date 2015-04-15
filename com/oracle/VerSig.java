@@ -1,6 +1,7 @@
 package com.oracle;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.BufferedInputStream;
 
 import java.security.KeyFactory;
@@ -46,7 +47,7 @@ public class VerSig
         {
             System.err.println("Caught exception " + e.toString());
 	}
-    }
+    }    
 }
 
 /*		***		LIBRARY OVERVIEW	***	                              		*/
