@@ -71,7 +71,7 @@ export MAIN_DIALOG='
 	</frame>
       </expander>
       
-      <expander label="Verfication" expanded="true">
+      <expander label="Verification" expanded="true">
 	<vbox>
 	  <frame Choose File to be Tested>
 	    <hbox>
