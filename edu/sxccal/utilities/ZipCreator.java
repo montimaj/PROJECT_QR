@@ -6,7 +6,8 @@ import java.io.File;
 import java.util.zip.ZipOutputStream;
 import java.util.zip.ZipEntry;
 
-//User library to create a zip file	 
+//User library to create a zip file	
+//throws java.lang.Exception if an exception occurs
 public class ZipCreator
 {   
   public static void create_zip(String zipFile,String[] infiles) throws Exception

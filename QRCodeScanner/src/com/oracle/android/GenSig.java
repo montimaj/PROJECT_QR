@@ -14,6 +14,7 @@ import java.security.PublicKey;
 import edu.sxccal.qrcodescanner.QRCode;
 import edu.sxccal.qrcodescanner.QR;
 //Creates 'sig' and 'suepk' files
+//Functionality is same to that of the PC module com.oracle.GenSig
 public class GenSig
 {
     public static void Gen_sig(String file) throws Exception

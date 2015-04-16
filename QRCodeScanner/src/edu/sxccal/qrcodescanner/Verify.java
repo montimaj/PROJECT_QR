@@ -12,6 +12,8 @@ import com.oracle.android.VerSig;
 import edu.sxccal.qrcodescanner.R;
 import edu.sxccal.qrcodescanner.QRCode;
 
+/* This activity displays the verification result */
+
 public class Verify extends Activity implements View.OnClickListener
 {	
 	private Button bt;

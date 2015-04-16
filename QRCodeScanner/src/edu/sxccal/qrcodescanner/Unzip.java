@@ -9,6 +9,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 //Module to extract zip file
+////Throws java.lang.Exception if an exception occurs
 public class Unzip
 {    
     private static final int BUFFER_SIZE = 4096;      
@@ -28,7 +29,7 @@ public class Unzip
 	        if (!entry.isDirectory()) 
 	        {                
 	        	if(flag)	             
-	            f3=filePath;	               
+	        		f3=filePath;	               
 	            extractFile(zipIn, filePath);
 	        } 
 	        else 

@@ -1,6 +1,7 @@
 package edu.sxccal.utilities;
 
 //This user libary is used to convert a colour image to black and ImgtoBlackandWhite
+//Throws java.lang.Exception if an exception occurs
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.Color;

@@ -11,6 +11,8 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
+/* This is the main module that creates the detached digital signature and the public key */
+//Functionality is same to that of the android app module com.oracle.android.GenSig
 public class GenSig
 {
     public static void Gen_sig(String file,String dest) throws Exception

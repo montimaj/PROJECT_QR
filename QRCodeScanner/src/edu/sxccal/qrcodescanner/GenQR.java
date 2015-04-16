@@ -12,6 +12,10 @@ import android.widget.Button;
 
 import java.io.File;
 
+//This activity uses QR.java module to display 
+//the paths of the generated QRCode.png, sig and suepk files
+//if successful
+//else raises a Toast that displays the path to Log.txt
 public class GenQR extends Activity implements Runnable,View.OnClickListener
 {		
 	private static ProgressDialog dialog;

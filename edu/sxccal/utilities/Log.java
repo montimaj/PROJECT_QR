@@ -45,4 +45,7 @@ public class Log
   
   FileWriter: Convenience class for writing character files and is meant for writing streams of characters.
   Class Details: http://docs.oracle.com/javase/7/docs/api/java/io/FileWriter.html
+  
+  Date: The class Date represents a specific instant in time, with millisecond precision. 
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/util/Date.html 
 */
