@@ -94,7 +94,7 @@ class GenQR
       File f1=new File(pubkey),f2=new File(sign);      
       QRCode.gen_qrcode(f); //generate QRCode image 
       Process p2=r.exec("zenity --info --title=Result --text=Success!"); //Display window to notify about successful generation
-      p1.destroy(); //Destory progress process
+      p1.destroy(); //Destroy progress process
       p2.waitFor(); //Run process p2 until "OK" is pressed
       p1=r.exec("xdg-open "+args[1]+"/QRCode.png"); //Display QRCode image
       p1.waitFor();
