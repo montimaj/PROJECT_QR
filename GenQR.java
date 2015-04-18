@@ -91,7 +91,7 @@ class GenQR
       String files[]={pubkey,sign,args[0]};
       ZipCreator.create_zip(zipin,files); //create result.zip
       String f[]={zipin,filePath};
-      File f1=new File(pubkey),f2=new File(sign);      
+      File f1=new File(pubkey),f2=new File(sign);    
       QRCode.gen_qrcode(f); //generate QRCode image 
       Process p2=r.exec("zenity --info --title=Result --text=Success!"); //Display window to notify about successful generation
       p1.destroy(); //Destroy progress process

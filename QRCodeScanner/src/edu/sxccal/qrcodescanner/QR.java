@@ -22,18 +22,18 @@ public class QR
 	    String data =read_from_file(dataPath,"ISO-8859-1");	    
 	    QRCodeWriter writer = new QRCodeWriter();		    
 		String genqr=QRCode.filePath+"/QRCode.png";
-		int img_size=400;
-		BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);    
-		Bitmap bmp = Bitmap.createBitmap(img_size,img_size,Bitmap.Config.ARGB_8888); //image size is 500*500 pixels
-		for (int i = 0; i < img_size; i++) 		   
-			for (int j = 0; j < img_size; j++) 
-				bmp.setPixel(i, j, bm.get(i, j) ? Color.BLACK: Color.WHITE);		
+		int img_size=400;		
+		BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);	//Zxing library	    
+		Bitmap bmp = Bitmap.createBitmap(img_size,img_size,Bitmap.Config.ARGB_8888); 		
 		if (bmp != null) 
 		{
 			File f=new File(genqr);
 		    if(f.exists())
 		    	f.delete();
 		    FileOutputStream gqr=new FileOutputStream(genqr);
+		    for (int i = 0; i < img_size; i++) 		   
+				for (int j = 0; j < img_size; j++) 
+					bmp.setPixel(i, j, bm.get(i, j) ? Color.BLACK: Color.WHITE);		
 		    bmp.compress(Bitmap.CompressFormat.PNG, 100,gqr);
 		    str+="\nQRCode img: "+genqr;		    		    
 		    gqr.close();
