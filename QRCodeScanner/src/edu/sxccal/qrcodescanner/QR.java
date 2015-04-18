@@ -22,7 +22,7 @@ public class QR
 	    String data =read_from_file(dataPath,"ISO-8859-1");	    
 	    QRCodeWriter writer = new QRCodeWriter();		    
 		String genqr=QRCode.filePath+"/QRCode.png";
-		int img_size=500;
+		int img_size=400;
 		BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);    
 		Bitmap bmp = Bitmap.createBitmap(img_size,img_size,Bitmap.Config.ARGB_8888); //image size is 500*500 pixels
 		for (int i = 0; i < img_size; i++) 		   
