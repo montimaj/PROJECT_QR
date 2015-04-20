@@ -69,27 +69,34 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 			   }
 			   break;		   
 		  }
-	}
+	}	
 	public void run()
 	{	
 		try
 		{
-			QR.generateQRCode(f);			
+			QR.generateQRCode(f);	
+			handler.sendEmptyMessage(0);
 		}
 		catch(Exception e)
-		{
-			e.printStackTrace();			
+		{			
+			handler.sendEmptyMessage(1);
+			Log.create_log(new Exception("QRCode generation failed!"), getApplicationContext());
 		}
-		handler.sendEmptyMessage(0);
+			
 	}
 	private static Handler handler = new Handler()
 	{
          	public void handleMessage(Message msg)
          	{
-                 	dialog.dismiss();
-                 	tv.setText(QR.str);
-                 	QR.str="";
+         		dialog.dismiss();
+         		tv.setText(QR.str);
+         		if(msg.what==1)
+         		{
+         			tv.append("\nCheck QR/log.txt");
+         			Log.create_log("QRCode generation failed!");         	
+         		}
          	}
+         	
  	};	
 }
 

@@ -18,35 +18,35 @@ public class QR
 {	
 	public static String str="";
 	public static void generateQRCode(String dataPath) throws Exception //create QRCode image
-	{			
-	    String data =read_from_file(dataPath,"ISO-8859-1");	    
-	    QRCodeWriter writer = new QRCodeWriter();		    
-		String genqr=QRCode.filePath+"/QRCode.png";
-		int img_size=400;		
-		BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);	//Zxing library	    
-		Bitmap bmp = Bitmap.createBitmap(img_size,img_size,Bitmap.Config.ARGB_8888); 		
-		if (bmp != null) 
-		{
-			File f=new File(genqr);
-		    if(f.exists())
-		    	f.delete();
-		    FileOutputStream gqr=new FileOutputStream(genqr);
-		    for (int i = 0; i < img_size; i++) 		   
-				for (int j = 0; j < img_size; j++) 
-					bmp.setPixel(i, j, bm.get(i, j) ? Color.BLACK: Color.WHITE);		
-		    bmp.compress(Bitmap.CompressFormat.PNG, 100,gqr);
-		    str+="\nQRCode img: "+genqr;		    		    
-		    gqr.close();
-		}
-		else
-		{
-			str="";
-			throw new Exception("QRCode generation failed!");
-		}
+	{	    
+			String data =read_from_file(dataPath,"ISO-8859-1");	   
+		    QRCodeWriter writer = new QRCodeWriter();		    
+			String genqr=QRCode.filePath+"/QRCode.png";
+			int img_size=400;		
+			BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);	//Zxing library	    
+			Bitmap bmp = Bitmap.createBitmap(img_size,img_size,Bitmap.Config.ARGB_8888); 		
+			if (bmp != null) 
+			{
+				File f=new File(genqr);
+			    if(f.exists())
+			    	f.delete();
+			    FileOutputStream gqr=new FileOutputStream(genqr);
+			    for (int i = 0; i < img_size; i++) 		   
+					for (int j = 0; j < img_size; j++) 
+						bmp.setPixel(i, j, bm.get(i, j) ? Color.BLACK: Color.WHITE);		
+			    bmp.compress(Bitmap.CompressFormat.PNG, 100,gqr);
+			    str+="\nQRCode img: "+genqr;		    		    
+			    gqr.close();
+			}
+			else
+			{
+				str="";
+				throw new Exception("QRCode generation failed!");
+			}	    	    
 	}
 	public static String read_from_file(String s, String charset) throws Exception
 	{		
-		String ext=s.substring(s.indexOf('.')+1,s.length());
+		String ext=s.substring(s.lastIndexOf('.')+1,s.length());
 		boolean flag=false;	
 		RandomAccessFile fp=new RandomAccessFile(s,"r");
 		if(ext.equalsIgnoreCase("jpg") || ext.equalsIgnoreCase("png") || ext.equalsIgnoreCase("jpeg") && fp.length()>1500)
@@ -58,6 +58,11 @@ public class QR
 		fp.close();
 		fp=new RandomAccessFile(s,"rw");			
 		String data="";
+		if(fp.length()>3000)
+		{	
+			fp.close();
+			throw new Exception("File too large!");
+		}
 		for(int i=0;i<fp.length();++i)
 		  data+=(char)fp.read(); //store data read from input file in a string			
 		GenSig.Gen_sig(s);	//Generate digital signature and public key		

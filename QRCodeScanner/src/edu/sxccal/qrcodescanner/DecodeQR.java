@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
-
 import edu.sxccal.qrcodescanner.R;
 import edu.sxccal.qrcodescanner.QRCode;
 
@@ -20,6 +19,7 @@ import com.google.zxing.BinaryBitmap;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
+
 
 /*This module decodes a QRCode image and stores it in Decoded directory as "decoded.txt" */
 
@@ -73,8 +73,8 @@ public class DecodeQR extends Activity implements View.OnClickListener
 	        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
 	        bmp.recycle();
 		 	bmp = null;
-	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //Zxing libraries
-	        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //ZxiHashMap<K, V>aries
+	        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));	       
 			Result qr_result = new QRCodeReader().decode(bitmap);
 			tv.setText("Successfully Decoded!\n");
 			tv.append("Decoded file is at:\n");

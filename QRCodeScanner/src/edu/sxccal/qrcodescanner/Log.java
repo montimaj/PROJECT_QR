@@ -23,7 +23,18 @@ public class Log
 			 pw.println("-> "+e.toString());			
 			 pw.close();			 			 
 		 }catch(Exception e2){}
-     }      	
+     }
+	public static void create_log(String s)
+	{
+		try
+		{
+			String log=QRCode.filePath+"/log.txt";
+			PrintWriter pw=new PrintWriter((new BufferedWriter(new FileWriter(log, true))));
+			pw.println("->"+s);			
+			pw.close();
+		}
+		catch(Exception e){}
+	}
 }
 
 /*				***		LIBRARY OVERVIEW	***	    */
