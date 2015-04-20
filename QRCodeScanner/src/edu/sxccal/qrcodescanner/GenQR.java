@@ -94,6 +94,7 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
          			tv.append("\nCheck QR/log.txt");
          			Log.create_log("QRCode generation failed!");         	
          		}
+         		QR.str="";
          	}
          	
  	};	
