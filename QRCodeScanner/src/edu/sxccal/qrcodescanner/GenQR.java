@@ -80,7 +80,6 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 		catch(Exception e)
 		{			
 			handler.sendEmptyMessage(1);
-			Log.create_log(new Exception("QRCode generation failed!"), getApplicationContext());
 		}
 			
 	}

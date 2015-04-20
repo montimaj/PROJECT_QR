@@ -73,7 +73,7 @@ public class DecodeQR extends Activity implements View.OnClickListener
 	        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
 	        bmp.recycle();
 		 	bmp = null;
-	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); //ZxiHashMap<K, V>aries
+	        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels); 
 	        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));	       
 			Result qr_result = new QRCodeReader().decode(bitmap);
 			tv.setText("Successfully Decoded!\n");
