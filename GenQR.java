@@ -98,7 +98,6 @@ class GenQR
       p1.destroy(); //Destroy progress process
       p2.waitFor(); //Run process p2 until "OK" is pressed
       p1=r.exec("xdg-open "+args[1]+"/QRCode.png"); //Display QRCode image
-      System.out.println("Output dir: "+args[1]);
       p1.waitFor();
     }
     catch(Exception e)
