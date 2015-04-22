@@ -29,6 +29,7 @@ class QRCode
     //ISO-8859-1 is used to encode bytes read from the input file, args[1] is the directory path of the QR image
     String charset = "ISO-8859-1", file = args[1]+"/QRCode.png", data = args[0]; 
     data=read_from_file(data, charset);   
+    System.out.println("\nISO-8859-1 encoded data size of result.zip: "+data.length()); //if this exceeds ~2.9KB then Exception will occur
     Map<EncodeHintType, ErrorCorrectionLevel> hint_map1 = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
     hint_map1.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L); //hints used by QRCodeWriter.encode for efficient generation of the QRCode image
     createQRCode(data, file,hint_map1,500,500);
@@ -68,7 +69,7 @@ class GenQR
       if(args.length<2) 
 	throw new Exception("Invalid input!");
       if(!(new File(args[0])).exists())
-	throw new Exception("File names should not have spaces!");
+	throw new Exception("Input file doesn't exist!");
       Runtime r=Runtime.getRuntime();
       Process p1=r.exec("zenity --progress --pulsate --no-cancel --text="+"Generating...");
       String filePath = args[1]; 
@@ -97,6 +98,7 @@ class GenQR
       p1.destroy(); //Destroy progress process
       p2.waitFor(); //Run process p2 until "OK" is pressed
       p1=r.exec("xdg-open "+args[1]+"/QRCode.png"); //Display QRCode image
+      System.out.println("Output dir: "+args[1]);
       p1.waitFor();
     }
     catch(Exception e)
