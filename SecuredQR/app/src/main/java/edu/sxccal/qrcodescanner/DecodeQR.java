@@ -13,6 +13,7 @@ import edu.sxccal.qrcodescanner.QRCode;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.BinaryBitmap;
@@ -85,7 +86,7 @@ public class DecodeQR extends Activity implements View.OnClickListener
 			Log.create_log(e, getApplicationContext());
 		}
 	}	
-	public void write_to_file(String s) throws Exception 
+	public void write_to_file(String s) throws IOException
 	{
 		String dfile=QRCode.filePath+"/Decoded";
 		File dir=new File(dfile);

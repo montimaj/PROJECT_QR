@@ -173,10 +173,12 @@
     <!-- From: file:/home/monti/Monti_Backup/PROGS/SecuredQR/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="about">About</string>
+    <string name="about_txt">View source at https://github.com/montimaj/PROJECT_QR</string>
     <string name="action_settings">Settings</string>
     <string name="app_name">SecuredQR</string>
     <string name="button_save">Save to a File</string>
     <string name="decode">Decode QR image</string>
+    <string name="developers">Developed by Sayantan-Abhisek-Biswarup </string>
     <string name="hello_world">Hello world!</string>
     <string name="scan">Scan</string>
     <string name="sfile">Select Input File</string>
@@ -185,6 +187,7 @@
     <string name="title_activity_gen_qr">GenQR</string>
     <string name="title_activity_savetext">Savetext</string>
     <string name="title_activity_ver_sig">VerSig</string>
+    <string name="ver">SECURED QR v2.1.1</string>
     <!-- From: file:/home/monti/Monti_Backup/PROGS/SecuredQR/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">

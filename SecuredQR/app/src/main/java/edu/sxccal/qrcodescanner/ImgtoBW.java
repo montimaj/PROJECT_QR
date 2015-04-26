@@ -1,6 +1,7 @@
 package edu.sxccal.qrcodescanner;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -12,7 +13,7 @@ import android.graphics.Paint;
 //create black and white image
 public class ImgtoBW 
 {	
-	public static String toBW(String src) throws Exception
+	public static String toBW(String src) throws IOException
 	{
 		String bw=QRCode.filePath+"/BW.jpg";
 		ColorMatrix cm = new ColorMatrix();

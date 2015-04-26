@@ -1,13 +1,15 @@
 package edu.sxccal.qrcodescanner;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.oracle.android.GenSig;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.RandomAccessFile;
+import java.io.IOException;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -23,7 +25,7 @@ public class QR
 		    QRCodeWriter writer = new QRCodeWriter();
 			String genqr=QRCode.filePath+"/QRCode.png";
 			int img_size=400;		
-			BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);	//Zxing library	    
+			BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);
 			Bitmap bmp = Bitmap.createBitmap(img_size,img_size,Bitmap.Config.ARGB_8888); 		
 			if (bmp != null) 
 			{
@@ -39,29 +41,27 @@ public class QR
 			    gqr.close();
 			}
 			else
-				throw new Exception("QRCode generation failed!");
+				throw new WriterException("QRCode generation failed!");
 
 	}
 	public static String read_from_file(String s, String charset) throws Exception
 	{		
 		String ext=s.substring(s.lastIndexOf('.')+1,s.length());
-		boolean flag=false;	
-		RandomAccessFile fp=new RandomAccessFile(s,"r");
-		if(ext.equalsIgnoreCase("jpg") || ext.equalsIgnoreCase("png") || ext.equalsIgnoreCase("jpeg") && fp.length()>1500)
+		boolean flag=false;
+		File file=new File(s);
+		if(ext.equalsIgnoreCase("jpg") || ext.equalsIgnoreCase("png") ||
+												ext.equalsIgnoreCase("jpeg") && file.length()>1500)
 		{
 			//if input file is an image of size>~1.5KB convert it to black and white
 			s=ImgtoBW.toBW(s);
 			flag=true;			
 		}
-		fp.close();
-		fp=new RandomAccessFile(s,"rw");			
 		String data="";
-		if(fp.length()>3000)
-		{	
-			fp.close();
-			throw new Exception("File too large!");
-		}
-		for(int i=0;i<fp.length();++i)
+		file=new File(s);
+		if(file.length()>3000)
+			throw new IOException("File too large!");
+		FileInputStream fp=new FileInputStream(file);
+		for(int i=0;i<file.length();++i)
 		  data+=(char)fp.read(); //store data read from input file in a string			
 		GenSig.Gen_sig(s);	//Generate digital signature and public key		
 		if(flag)
@@ -73,10 +73,7 @@ public class QR
 }
 /*				***		LIBRARY OVERVIEW	***	 			*/
 
-/*RandomAccessFile: Instances of this class support both reading and writing to a random access file
-  Class Details: http://docs.oracle.com/javase/7/docs/api/java/io/RandomAccessFile.html
-
-  BitMap.Config: Possible bitmap configurations. A bitmap configuration describes how pixels are stored.
+/*  BitMap.Config: Possible bitmap configurations. A bitmap configuration describes how pixels are stored.
   This affects the quality (color depth) as well as the ability to display transparent/translucent colors. 
   ARGB_8888: Each pixel is stored on 4 bytes.  
   Class Details: http://developer.android.com/reference/android/graphics/Bitmap.Config.html

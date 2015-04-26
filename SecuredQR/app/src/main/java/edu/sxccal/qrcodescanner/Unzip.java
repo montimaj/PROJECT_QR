@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.File;
 
+import java.io.IOException;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipInputStream;
 
 //Module to extract zip file
@@ -13,7 +15,7 @@ import java.util.zip.ZipInputStream;
 public class Unzip
 {    
     private static final int BUFFER_SIZE = 4096;      
-    public static String[] unzip(String zipFilePath, String destDirectory) throws Exception
+    public static String[] unzip(String zipFilePath, String destDirectory) throws IOException
     {    	
     	String f1=destDirectory + "/suepk";
     	String f2=destDirectory + "/sig";
@@ -44,7 +46,7 @@ public class Unzip
     	String files[]={f1,f2,f3};    	
         return files;
     }    
-    private static void extractFile(ZipInputStream zipIn, String filePath) throws Exception
+    private static void extractFile(ZipInputStream zipIn, String filePath) throws IOException
     {
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
         byte[] bytesIn = new byte[BUFFER_SIZE];

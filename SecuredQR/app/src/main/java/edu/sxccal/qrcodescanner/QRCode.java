@@ -18,6 +18,7 @@ import android.os.Environment;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class QRCode extends Activity implements OnClickListener
 {
@@ -145,7 +146,7 @@ public class QRCode extends Activity implements OnClickListener
 		        	f.write(scanContent.charAt(i));		        		        
 		        f.close();
 		    } 
-		    catch(Exception e)
+		    catch(IOException e)
 		    {		    	
 		    	Log.create_log(e, getApplicationContext()); //Write logs to log.txt
 		    }

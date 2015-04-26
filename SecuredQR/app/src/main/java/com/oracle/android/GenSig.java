@@ -23,14 +23,15 @@ public class GenSig
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "AndroidOpenSSL"); 
         //Algorithm provider for Android java is AndroidOpenSSL 
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "AndroidOpenSSL");
-        keyGen.initialize(3072, random);
+        int keysize=3072;
+        keyGen.initialize(keysize, random);
         KeyPair pair = keyGen.generateKeyPair();
         PrivateKey priv = pair.getPrivate();
         PublicKey pub = pair.getPublic();
         Signature rsa = Signature.getInstance("SHA1withRSA", "AndroidOpenSSL");
         rsa.initSign(priv);            
         BufferedInputStream bufin = new BufferedInputStream(fis);
-        byte[] buffer = new byte[3072];
+        byte[] buffer = new byte[keysize];
         int len;
         while (bufin.available() != 0)
         {
