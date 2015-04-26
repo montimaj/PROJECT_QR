@@ -9,15 +9,15 @@ class Verify
       try
       {
 	boolean v=VerSig.verify(args[2],args[1],args[0]);
-	Runtime r=Runtime.getRuntime();
-	Process p=r.exec("zenity --info --text="+"Verification:"+v); //Display verification result in a new window
+	String[] x={"zenity","--info","--text="+"Verification result: "+v};
+	Process p=new ProcessBuilder(x).start(); //Display verification result in a new window
 	p.waitFor();
       }
       catch(Exception e)
-      {
-	Runtime r=Runtime.getRuntime();	
+      {		
 	String s=Log.create_log(e); //Create log file if exception occurs
-        Process p=r.exec("zenity --error --text="+s);
+	String[] x={"zenity","--error","--text="+s};
+	Process p=new ProcessBuilder(x).start(); //Show error window
 	p.waitFor();
       }      
   }

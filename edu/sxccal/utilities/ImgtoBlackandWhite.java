@@ -6,13 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.io.File;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class ImgtoBlackandWhite
 {   
-  public static String toBW(String f,String dest) throws IOException
+  public static String toBW(String f,String dest) throws Exception
   {    
     File file = new File(f);    
     BufferedImage img = ImageIO.read(file);    
@@ -20,8 +19,7 @@ public class ImgtoBlackandWhite
     Graphics2D graphics = bwimg.createGraphics();
     graphics.drawImage(img, 0, 0, null);
     f=dest+"/BW.png";
-    ImageIO.write(bwimg, "png", new File(f));     
-    System.out.println("Black and white image is: "+f);    
+    ImageIO.write(bwimg, "png", new File(f));      
     return f; 
   } 
 }

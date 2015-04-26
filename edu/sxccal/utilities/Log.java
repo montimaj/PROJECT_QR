@@ -24,7 +24,8 @@ public class Log
       PrintWriter pw=new PrintWriter((new BufferedWriter(new FileWriter("Logs/Log.txt", true)))); //append String to Log.txt
       pw.println(s);
       pw.close();
-      return "Check:"+f.getAbsolutePath();
+      s="Oops! Errors have been detected!\n"+e.toString()+"\nCheck: "+f.getAbsolutePath()+" for more details";
+      return s;
     }
     catch(Exception exception)
     {

@@ -3,6 +3,7 @@ package edu.sxccal.utilities;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.zip.ZipOutputStream;
 import java.util.zip.ZipEntry;
 
@@ -10,7 +11,7 @@ import java.util.zip.ZipEntry;
 //throws java.lang.Exception if an exception occurs
 public class ZipCreator
 {   
-  public static void create_zip(String zipFile,String[] infiles) throws Exception
+  public static void create_zip(String zipFile,String[] infiles) throws IOException
   {        
       byte[] buffer = new byte[4096];	 
       FileOutputStream fos = new FileOutputStream(zipFile);	 
