@@ -66,6 +66,7 @@ class GenQR
   }
   public static void main(String args[]) throws Exception //args[0]-> input file directory, args[1]-> output directory
   {
+    Process p1=null;
     try
     {     
       if(args[0].isEmpty() || args[1].isEmpty())
@@ -74,7 +75,7 @@ class GenQR
       if(!file.exists())
 	throw new IOException("Input file doesn't exist!");      
       String[] x={"zenity","--progress","--pulsate","--no-cancel","--text=Generating..."};
-      Process p1=new ProcessBuilder(x).start();
+      p1=new ProcessBuilder(x).start();
       String filePath = args[1]; 
       File dir = new File(filePath);   
       if(!dir.exists())      
@@ -112,6 +113,7 @@ class GenQR
     }
     catch(Exception e)
     {    
+      p1.destroy();
       String s=Log.create_log(e);
       String[] x={"zenity","--error","--text="+s};
       Process p=new ProcessBuilder(x).start(); //Show error window
