@@ -154,6 +154,9 @@ class GenQR
   An application cannot create its own instance of this class.
   Class Details: http://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html
   
+  ProcessBuilder: This class is used to create operating system processes. 
+  Class Details: http://docs.oracle.com/javase/7/docs/api/java/lang/ProcessBuilder.html
+  
   Process: Runtime.exec create a native process and return an instance of a subclass of Process 
   that can be used to control the process and obtain information about it
   Class Details: http://docs.oracle.com/javase/7/docs/api/java/lang/Process.html
