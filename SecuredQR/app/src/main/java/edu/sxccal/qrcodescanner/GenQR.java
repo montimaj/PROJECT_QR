@@ -23,7 +23,8 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 	private Button bt;
 	private String f;
 	public final int PICKFILE_RESULT_CODE = 1;
-	protected void onCreate(Bundle savedInstanceState) 
+	public static Exception except;
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gen_qr);		
@@ -79,6 +80,7 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 		}
 		catch(Exception e)
 		{			
+			except=e;
 			handler.sendEmptyMessage(1);
 		}
 			
@@ -87,14 +89,10 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 	{
          	public void handleMessage(Message msg)
          	{
-         		dialog.dismiss();        
-         		tv.setText(QR.str);
+         		dialog.dismiss();
          		if(msg.what==1)
-         		{
-         			tv.append("\nCheck QR/log.txt");
-         			Log.create_log("QRCode generation failed!");
-         			//Log.create_log(new Exception("QRCode generation failed!").toString());
-         		}         		
+         			Log.create_log(except, dialog.getContext());
+				tv.setText(QR.str);
          		QR.str="";
          	}
          	

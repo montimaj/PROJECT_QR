@@ -1,9 +1,8 @@
 package edu.sxccal.qrcodescanner;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
-//import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.oracle.android.GenSig;
 
 import java.io.File;
@@ -21,7 +20,7 @@ public class QR
 	public static void generateQRCode(String dataPath) throws Exception //create QRCode image
 	{	    
 			String data =read_from_file(dataPath,"ISO-8859-1");	   
-		    MultiFormatWriter writer = new MultiFormatWriter();		    
+		    QRCodeWriter writer = new QRCodeWriter();
 			String genqr=QRCode.filePath+"/QRCode.png";
 			int img_size=400;		
 			BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE,img_size,img_size);	//Zxing library	    
@@ -40,10 +39,8 @@ public class QR
 			    gqr.close();
 			}
 			else
-			{
-				str="";
 				throw new Exception("QRCode generation failed!");
-			}	    	    
+
 	}
 	public static String read_from_file(String s, String charset) throws Exception
 	{		
