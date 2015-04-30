@@ -100,8 +100,7 @@ class GenQR
       String pubkey=filePath+"/suepk",sign=filePath+"/sig",zipin=filePath+"/result.zip";      
       String files[]={pubkey,sign,args[0]};
       ZipCreator.create_zip(zipin,files); //create result.zip
-      String f[]={zipin,filePath};
-      File f1=new File(pubkey),f2=new File(sign);    
+      String f[]={zipin,filePath};     
       result+=QRCode.gen_qrcode(f); //generate QRCode image       
       String[] x1={"zenity","--info","--title=Result","--text="+result};
       Process p2=new ProcessBuilder(x1).start(); //Display window to notify about successful generation
