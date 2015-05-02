@@ -1,5 +1,7 @@
 package com.oracle.android;
 
+import android.util.Base64;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
@@ -39,12 +41,12 @@ public class GenSig
             rsa.update(buffer, 0, len);
         }
         bufin.close();
-        byte[] realSig = rsa.sign();  
+        byte[] realSig = Base64.encode(rsa.sign(), Base64.DEFAULT);
         String f1=QRCode.filePath+"/sig",f2=QRCode.filePath+"/suepk";
         FileOutputStream sigfos = new FileOutputStream(f1);
         sigfos.write(realSig);
         sigfos.close();
-        byte[] key = pub.getEncoded();
+        byte[] key = Base64.encode(pub.getEncoded(), Base64.DEFAULT);
         FileOutputStream keyfos = new FileOutputStream(f2);
         keyfos.write(key);
         keyfos.close();

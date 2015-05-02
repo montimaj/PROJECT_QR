@@ -3,11 +3,10 @@ package edu.sxccal.qrcodescanner;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import edu.sxccal.qrcodescanner.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +18,7 @@ import android.os.Environment;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 
 public class QRCode extends Activity implements OnClickListener
 {
@@ -120,20 +120,16 @@ public class QRCode extends Activity implements OnClickListener
 		    boolean readable = false;
 		    boolean writeable = false;
 		    String state = Environment.getExternalStorageState();
-		    if (Environment.MEDIA_MOUNTED.equals(state)) 
-		    {		       
+		    if (Environment.MEDIA_MOUNTED.equals(state))
 		        readable = writeable = true;
-		    }
 		    else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) 
 		    {		        
 		        readable = true;
 		        writeable = false;
 		    }
 		    else
-		    {		        
 		        readable = writeable = false;
-		    }   
-		    return (readable&&writeable);
+		    return (readable && writeable);
 	}		
 	public void write_to_file()
 	{			 			
@@ -141,10 +137,9 @@ public class QRCode extends Activity implements OnClickListener
 		    File file = new File(dir, "/result.zip");		    
 		    try 
 		    {
-		        FileOutputStream f = new FileOutputStream(file);		        
-		        for(int i=0;i<scanContent.length();++i)
-		        	f.write(scanContent.charAt(i));		        		        
-		        f.close();
+		        FileOutputStream fos = new FileOutputStream(file);
+				fos.write(Base64.decode(scanContent.getBytes(), Base64.DEFAULT));
+		        fos.close();
 		    } 
 		    catch(IOException e)
 		    {		    	

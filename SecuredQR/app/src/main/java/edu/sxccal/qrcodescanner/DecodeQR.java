@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
-import edu.sxccal.qrcodescanner.R;
-import edu.sxccal.qrcodescanner.QRCode;
 
 import java.io.File;
 import java.io.FileOutputStream;

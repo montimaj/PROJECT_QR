@@ -3,6 +3,7 @@ package com.oracle;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
+import java.util.Base64;
 
 import java.security.SecureRandom;
 import java.security.KeyPairGenerator;
@@ -37,11 +38,11 @@ public class GenSig
                 rsa.update(buffer, 0, len);
             }
             bufin.close();
-            byte[] realSig = rsa.sign(); //Now that all the data to be signed has been read in,generate a signature for it     
+            byte[] realSig = Base64.getEncoder().encode(rsa.sign()); //Now that all the data to be signed has been read in,generate a signature for it     
             FileOutputStream sigfos = new FileOutputStream(dest+"/sig"); //create 'sig' file
             sigfos.write(realSig);//write the signature to 'sig' file
             sigfos.close();
-            byte[] key = pub.getEncoded();
+            byte[] key = Base64.getEncoder().encode(pub.getEncoded());
             FileOutputStream keyfos = new FileOutputStream(dest+"/suepk"); //create 'suepk' file
             keyfos.write(key);//write the public key to 'suepk' file
             keyfos.close();  	  
