@@ -29,6 +29,8 @@ System requirements for PC:
 Start the GUI by executing start.sh via the terminal(Ex:  foo@bar:~$ sh start.sh )
 Alternatively change the permission of 'start.sh' & make it executable($ chmod +x start.sh) for once. Then like any other app, just double click on start.sh to run the GUI.
 
+API Documentation: https://montimaj.github.io
+
 ****                                ANDROID APP                                                        ****
 
 SecuredQR is the source for the android app. The app can be used to generate QRCode image and digital signature, public key similar to the PC version. 
