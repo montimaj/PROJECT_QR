@@ -2,6 +2,10 @@
 
 Generate QR code from various files and verify the authenticity of the file using digital signature.
 
+AuthenticQR is the source for the android app
+
+The bin folder inside Authentic QR should not be modified
+
 The digital signatute scheme has been implemented using:
 
 -> Encryption Algorithm: RSA
