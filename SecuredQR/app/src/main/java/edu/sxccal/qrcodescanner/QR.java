@@ -9,19 +9,27 @@ import com.oracle.android.GenSig;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.util.Base64;
 
-/*This entire module creates the QRCode image, digital signature and the public key */
-//Throws java.lang.Exception if an exception occurs
-public class QR
-{	
+/**
+ * Creates the QRCode image, digital signature and the public key
+ * @since 1.0
+ */
+ public class QR
+{
 	public static String str="";
-	public static void generateQRCode(String dataPath) throws Exception //create QRCode image
+
+	/**
+	 * Creates QRCode image of size 400X400
+	 * @param dataPath Path to input data
+	 * @throws Exception
+	 */
+	public static void generateQRCode(String dataPath) throws Exception
 	{	    
-			String data =read_from_file(dataPath,"ISO-8859-1");	   
+			String data =read_from_file(dataPath);
 		    QRCodeWriter writer = new QRCodeWriter();
 			String genqr=QRCode.filePath+"/QRCode.png";
 			int img_size=400;		
@@ -44,7 +52,13 @@ public class QR
 				throw new WriterException("QRCode generation failed!");
 
 	}
-	public static String read_from_file(String s, String charset) throws Exception
+
+	/**
+	 * @param s Input file to be read
+	 * @return {@link android.util.Base64} encoded String
+	 * @throws Exception
+	 */
+	public static String read_from_file(String s) throws Exception
 	{		
 		String ext=s.substring(s.lastIndexOf('.')+1,s.length());
 		boolean flag=false;
@@ -56,42 +70,15 @@ public class QR
 			s=ImgtoBW.toBW(s);
 			flag=true;			
 		}
-		String data="";
 		file=new File(s);
-		if(file.length()>3000)
-			throw new IOException("File too large!");
 		FileInputStream fp=new FileInputStream(file);
-		for(int i=0;i<file.length();++i)
-		  data+=(char)fp.read(); //store data read from input file in a string			
+		byte[] data=new byte[fp.available()];
+		fp.read(data); //store data read from input file in a string
+		fp.close();
 		GenSig.Gen_sig(s);	//Generate digital signature and public key		
 		if(flag)
 			str+="\nB&W image: "+s;
-		data = new String(data.getBytes(), charset);
-		fp.close();			
-		return data;
+		s = Base64.encodeToString(data, Base64.DEFAULT);
+		return s;
 	}
 }
-/*				***		LIBRARY OVERVIEW	***	 			*/
-
-/*  BitMap.Config: Possible bitmap configurations. A bitmap configuration describes how pixels are stored.
-  This affects the quality (color depth) as well as the ability to display transparent/translucent colors. 
-  ARGB_8888: Each pixel is stored on 4 bytes.  
-  Class Details: http://developer.android.com/reference/android/graphics/Bitmap.Config.html
-  
-  BitMap.CompressFormat: Specifies the known formats a bitmap can be compressed into 
-  Class Details: http://developer.android.com/reference/android/graphics/Bitmap.CompressFormat.html
-
-  Color: The Color class defines methods for creating and converting color ints
-  Class Details: http://developer.android.com/reference/android/graphics/Color.html
-  
-  BitMatrix: Represents a 2D matrix of bits.  
-  Internally the bits are represented in a 1-D array of 32-bit ints. 
-  The ordering of bits is row-major.
-  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/common/BitMatrix.html
-
-  QRCodeWriter: Renders a QR Code as a BitMatrix 2D array of greyscale values.
-  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/qrcode/QRCodeWriter.html
-  
-  BarcodeFormat: Specifies the barcode format(Ex: QR_CODE, AZTEC etc)
-  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/BarcodeFormat.html
-*/

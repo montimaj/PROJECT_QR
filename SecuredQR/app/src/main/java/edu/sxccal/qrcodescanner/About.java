@@ -6,10 +6,13 @@ import android.widget.TextView;
 
 import edu.sxccal.qrcodescanner.R;
 
-//The about section of the app 
+/**
+ * The about section of the app
+ */
 public class About extends Activity
 {	
-	protected void onCreate(Bundle savedInstanceState) 
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);

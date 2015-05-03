@@ -9,11 +9,21 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;;
 import java.util.zip.ZipInputStream;
 
-//Module to extract zip file
-////Throws java.lang.Exception if an exception occurs
-public class Unzip
+/**
+ * Extracts zip file
+ * @since 1.0
+ */
+ public class Unzip
 {    
-    private static final int BUFFER_SIZE = 4096;      
+    private static final int BUFFER_SIZE = 4096;
+
+	/**
+	 *
+	 * @param zipFilePath input zip file path
+	 * @param destDirectory output directory for storing extracted files
+	 * @return array of Strings containing filepaths of the extracted files
+	 * @throws IOException
+	 */
     public static String[] unzip(String zipFilePath, String destDirectory) throws IOException
     {    	
     	String f1=destDirectory + "/suepk";

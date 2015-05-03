@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 public class Log
 {
   /**
-  * Appends exception messages to Log.txt
+  * Appends exception messages to Log.txt along with the date and time of log generation
   * @param e Exception object 
   * @return Exception message
   */

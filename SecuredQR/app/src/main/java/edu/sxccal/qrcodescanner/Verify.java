@@ -9,13 +9,18 @@ import android.view.View;
 
 import com.oracle.android.VerSig;
 
-/* This activity displays the verification result */
+/**
+ *  This activity displays the verification result
+ *  @since 1.0
+ *  */
 
 public class Verify extends Activity implements View.OnClickListener
-{	
+{
 	private Button bt;
 	public static TextView tv;
 	private final int PICKFILE_RESULT_CODE = 1;
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);	
@@ -23,6 +28,8 @@ public class Verify extends Activity implements View.OnClickListener
 		bt=(Button)findViewById(R.id.verify_file);
 		bt.setOnClickListener(this);
 	}
+
+	@Override
 	public void onClick(View v)
 	{
 		Intent fileintent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -36,6 +43,8 @@ public class Verify extends Activity implements View.OnClickListener
             Log.create_log(e, getApplicationContext());
         }	
 	}
+
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{		  
 		  switch(requestCode)
@@ -49,6 +58,11 @@ public class Verify extends Activity implements View.OnClickListener
 			   break;
 		  }
 	}
+
+	/**
+	 *
+	 * @param f3 Input file to be verified
+	 */
 	public void verify_data(String f3)
 	{		
 		//get absolute paths of the files

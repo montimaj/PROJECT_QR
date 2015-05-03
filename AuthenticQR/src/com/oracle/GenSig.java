@@ -26,7 +26,7 @@ import java.security.PublicKey;
 public class GenSig
 {
     /**
-    * Writes the signature to 'sig' and public key in 'suepk'
+    * Writes the signature to 'sig' and public key to 'suepk'
     * @param file Input file whose signature and public key is to be generated
     * @param dest Output directory to store the signature and public key files encoded in {@link java.util.Base64} format   
     * @throws Exception 

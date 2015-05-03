@@ -1,6 +1,7 @@
 package edu.sxccal.qrcodescanner;
 
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.Button;
 import android.widget.TextView;
 import android.app.Activity;
@@ -20,7 +21,10 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 
 
-/*This module decodes a QRCode image and stores it in Decoded directory as "decoded.txt" */
+/**
+ * This module decodes a QRCode image and stores it in Decoded directory as "decoded.txt"
+ * @since 1.0
+ */
 
 public class DecodeQR extends Activity implements View.OnClickListener
 {	
@@ -34,6 +38,8 @@ public class DecodeQR extends Activity implements View.OnClickListener
 		bt=(Button)findViewById(R.id.edqr);
 		bt.setOnClickListener(this); 	
 	}
+
+	@Override
 	public void onClick(View v)
 	{
 		Intent fileintent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -47,6 +53,8 @@ public class DecodeQR extends Activity implements View.OnClickListener
             Log.create_log(e, getApplicationContext());
         }	
 	}
+
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{		  
 		  switch(requestCode)
@@ -60,6 +68,11 @@ public class DecodeQR extends Activity implements View.OnClickListener
 			   break;
 		  }
 	}
+
+	/**
+	 * Writes decoded message to Decoded.txt
+	 * @param f Input QRCode image
+	 */
 	public void decode_qr(String f)
 	{
 		try
@@ -83,7 +96,13 @@ public class DecodeQR extends Activity implements View.OnClickListener
 		{
 			Log.create_log(e, getApplicationContext());
 		}
-	}	
+	}
+
+	/**
+	 * Creates decoded.txt
+	 * @param s Decoded string
+	 * @throws IOException
+	 */
 	public void write_to_file(String s) throws IOException
 	{
 		String dfile=QRCode.filePath+"/Decoded";
@@ -93,46 +112,9 @@ public class DecodeQR extends Activity implements View.OnClickListener
 		dfile+="/decoded.txt";
 		File file=new File(dfile);
 		FileOutputStream fp=new FileOutputStream(file);
-		for(int i=0;i<s.length();++i)
-		  fp.write(s.charAt(i));
+		byte[] result=Base64.decode(s.getBytes(), Base64.DEFAULT);
+		fp.write(result);
 		fp.close();
 		tv.append(dfile);
 	}
 }
-
-/*		***		LIBRARY OVERVIEW	***					*/
-
-/*EditText: EditText is a thin veneer over TextView that configures itself to be editable. 
-  Class Details: http://developer.android.com/reference/android/widget/EditText.html
-  
-  KeyEvent: Used to report key and button events.   
-  Class Details: http://developer.android.com/reference/android/view/KeyEvent.html
-
-  EditorInfo: Describes several attributes of a text editing object that an input method 
-  is communicating with (typically an EditText), 
-  most importantly the type of text content it contains and the current cursor position. 
-  Class Details: http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html
-
-  TextView.OnEditorActionListener: Interface definition for a callback to be invoked 
-  when an action is performed on the editor. 
-  Class Details: http://developer.android.com/reference/android/widget/TextView.OnEditorActionListener.html
-
-  BitMap: http://developer.android.com/reference/android/graphics/Bitmap.html
-
-  BitMapFactory: Creates Bitmap objects from various sources, including files, streams, and byte-arrays. 
-  Class Details: http://developer.android.com/reference/android/graphics/BitmapFactory.html
-
-  RGBLuminanceSource: Used to help decode images from files which arrive as RGB data from an ARGB pixel array.
-  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/RGBLuminanceSource.html
-  
-  BinaryBitMap: The core bitmap class used by ZXing to represent 1 bit data. 
-  Reader objects accept a BinaryBitmap and attempt to decode it.
-  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/BinaryBitmap.html
-  
-  Result: Encapsulates the result of decoding a barcode within an image.
-  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/Result.html
-  
-  QRCodeReader: Detects and decodes QR Codes in an image.
-  Class Details: http://zxing.github.io/zxing/apidocs/com/google/zxing/qrcode/QRCodeReader.html
- */
- 

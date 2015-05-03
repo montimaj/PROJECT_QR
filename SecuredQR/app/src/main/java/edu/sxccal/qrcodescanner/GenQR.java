@@ -12,10 +12,12 @@ import android.widget.Button;
 
 import java.io.File;
 
-//This activity uses QR.java module to display 
-//the paths of the generated QRCode.png, sig and suepk files
-//if successful
-//else raises a Toast that displays the path to Log.txt
+/**
+ * Uses {@link edu.sxccal.qrcodescanner.QR} module to display
+ *the paths of the generated QRCode.png, sig and suepk files
+ *if successful
+ *else raises a Toast that displays the path to Log.txt
+ */
 public class GenQR extends Activity implements Runnable,View.OnClickListener
 {		
 	private static ProgressDialog dialog;
@@ -24,6 +26,8 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 	private String f;
 	public final int PICKFILE_RESULT_CODE = 1;
 	public static Exception except;
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -32,6 +36,8 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 		bt=(Button)findViewById(R.id.genqr);
 		bt.setOnClickListener(this);       	
 	}
+
+	@Override
 	public void onClick(View v)
 	{
 		Intent fileintent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -45,6 +51,8 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
             Log.create_log(e, getApplicationContext());
         }	
 	}
+
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{		  
 		  switch(requestCode)
@@ -70,7 +78,9 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 			   }
 			   break;		   
 		  }
-	}	
+	}
+
+	@Override
 	public void run()
 	{	
 		try
@@ -87,7 +97,8 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
 	}
 	private static Handler handler = new Handler()
 	{
-         	public void handleMessage(Message msg)
+        @Override
+		public void handleMessage(Message msg)
          	{
          		dialog.dismiss();
          		if(msg.what==1)
@@ -98,33 +109,4 @@ public class GenQR extends Activity implements Runnable,View.OnClickListener
          	
  	};	
 }
-
-/*			***		LIBRARY OVERVIEW	***	               				*/
-
-/*Thread: A Thread is a concurrent unit of execution.
-  It has its own call stack for methods being invoked, their arguments and local variables
-  The start() method must be called to actually execute the new Thread. 
-  Class Details: http://developer.android.com/reference/java/lang/Thread.html
-
-  Runnable: Represents a command that can be executed.
-  Often used to run code in a different Thread.
-  Interface Details: http://developer.android.com/reference/java/lang/Runnable.html
-  
-  Handler: Used to send and process Message and Runnable objects associated with a thread's MessageQueue
-  Class Details: http://developer.android.com/reference/android/os/Handler.html
-  
-  Message: Defines a message containing a description and arbitrary data object
-  that can be sent to a Handler
-  Class Details: http://developer.android.com/reference/android/os/Message.html
-  
-  ProgressDialog: A dialog showing a progress indicator and an optional text message or view. 
-  Only a text message or a view can be used at the same time.
-  The dialog can be made cancelable on back key press.
-  Class Details: http://developer.android.com/reference/android/app/ProgressDialog.html
-  
-  Intent.ACTION_GET_CONTENT: Allows the user to select a particular kind of data and return it. 
-  Class Details: http://developer.android.com/reference/android/content/Intent.html
-*/
-  
-   
 

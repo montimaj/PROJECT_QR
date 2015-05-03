@@ -12,11 +12,23 @@ import java.security.spec.X509EncodedKeySpec;
 
 import edu.sxccal.qrcodescanner.Verify;
 
-//Verifies input file
-//Functionality is same to that of the PC module com.oracle.VerSig
-public class VerSig 
+/**
+ * Verifies input file
+ * @since 1.0
+ */
+ public class VerSig
 {
-    public static void verify(String args[]) throws Exception
+	/**
+	 *
+	 * @param args Input files where
+	 * <p>
+	 * args[0] is 'suepk'
+	 * args[1] is 'sig'
+	 * args[2] is the data file
+	 * </p>
+	 * @throws Exception
+	 */
+	public static void verify(String args[]) throws Exception
     {    	
     	FileInputStream keyfis = new FileInputStream(args[0]);
 		byte[] encKey = new byte[keyfis.available()];  
@@ -45,16 +57,3 @@ public class VerSig
 		Verify.tv.setText("Digital Signature verification result: "+verifies);		       		 
     }		
 }
-
-/*								***		LIBRARY OVERVIEW	***	                              		*/
-
-/*X509EncodedKeySpec: Represents the ASN.1 encoding of a public key
- ASN.1 Details: http://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One
- Class Details: https://docs.oracle.com/javase/7/docs/api/java/security/spec/X509EncodedKeySpec.html
- 
- KeyFactory: Used to convert keys (opaque cryptographic keys of type Key) 
- into key specifications (transparent representations of the underlying key material), and vice versa. 
- Class Details: https://docs.oracle.com/javase/7/docs/api/java/security/KeyFactory.html
-*/
- 
- 
