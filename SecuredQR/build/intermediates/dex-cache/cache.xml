@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/home/monti/Monti_Backup/PROGS/SecuredQR/app/libs/zxing/core.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="cba0b93b0072105d808ef7a00a107a4eb97874e7">
-        <dex dex="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/core-a08ba4cea20ed3cb1b768915902ef5b0eee49411.jar" />
-    </item>
-    <item
-        jar="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/classes-5d3df844be18dea660e3852d6411a68b521eba21.jar" />
-    </item>
-    <item
-        jar="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-a33e6c0928c3fcd06143c6c07dd98ba9b308908a.jar" />
+        <dex dex="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-37d7b58b225d9bed4cf2b9cc99f616ac243bafad.jar" />
     </item>
     <item
-        jar="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/classes-187d549c504e415daa18f8195a2103c42a14d8e5.jar" />
+    </item>
+    <item
+        jar="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/libs/zxing/core.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="cba0b93b0072105d808ef7a00a107a4eb97874e7">
+        <dex dex="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/core-360ebd0c723523434d2f9749791e718b4e0f5a02.jar" />
+    </item>
+    <item
+        jar="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/classes-344b76ef6b82cd5689352d0cdc62a33501d0adce.jar" />
+        <dex dex="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/classes-d224a7bec198d5b75cf22f511f5e4d071d9cc3e2.jar" />
     </item>
     <item
-        jar="/home/monti/android-sdks/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="/home/monti/MONTI/monti/android-sdks/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/home/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-1d93497e1c90cfdee02b15e843a0b134557fa1be.jar" />
+        <dex dex="/home/monti/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-9b124fb6208ef19ff4853880c720e6063f8cba12.jar" />
     </item>
 
 </items>

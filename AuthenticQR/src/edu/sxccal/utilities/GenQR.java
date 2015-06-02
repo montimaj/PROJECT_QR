@@ -36,7 +36,7 @@ public class GenQR
   }
   
   /**
-  * @param args[] Input arguments where args[0] should be input file directory, args[1] the output directory
+  * @param args Input arguments where args[0] should be input file directory, args[1] the output directory
   * @throws Exception 
   */   
   public static void main(String args[]) throws Exception 
