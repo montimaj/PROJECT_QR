@@ -18,7 +18,7 @@ System requirements for PC:
 
 -> Linux
 
--> JDK 1.7 or above
+-> JDK 1.8 or above
 
 -> GTK+
 
@@ -31,7 +31,7 @@ Alternatively change the permission of 'start.sh' & make it executable($ chmod +
 
 API Documentation: https://montimaj.github.io
 
-****                                ANDROID APP                                                        ****
+# ANDROID APP                                                        
 
 SecuredQR is the source for the android app. The app can be used to generate QRCode image and digital signature, public key similar to the PC version. 
 
