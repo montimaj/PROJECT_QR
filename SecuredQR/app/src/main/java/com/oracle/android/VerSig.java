@@ -54,6 +54,6 @@ import edu.sxccal.qrcodescanner.Verify;
 		}
 		bufin.close();
 		boolean verifies=sig.verify(Base64.decode(sigToVerify, Base64.DEFAULT));
-		Verify.tv.setText("Digital Signature verification result: "+verifies);		       		 
+		Verify.tv.setText("Digital Signature verification result: "+verifies);
     }		
 }
