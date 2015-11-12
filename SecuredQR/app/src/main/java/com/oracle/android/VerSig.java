@@ -1,6 +1,6 @@
 package com.oracle.android;
 
-import android.util.Base64;
+import edu.sxccal.qrcodescanner.Verify;
 
 import java.io.FileInputStream;
 import java.io.BufferedInputStream;
@@ -11,7 +11,7 @@ import java.security.Signature;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 
-import edu.sxccal.qrcodescanner.Verify;
+import org.apache.commons.codec.binary.Base64;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
 
 /**
@@ -37,7 +37,7 @@ import org.spongycastle.jce.provider.BouncyCastleProvider;
 		keyfis.read(encKey);
 		keyfis.close();
 		Security.insertProviderAt(new BouncyCastleProvider(), 1);
-		X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(Base64.decode(encKey, Base64.DEFAULT));
+		X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(Base64.decodeBase64(encKey));
 		KeyFactory keyFactory = KeyFactory.getInstance("RSA", "SC");
 		PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 		FileInputStream sigfis = new FileInputStream(args[1]);            
@@ -56,7 +56,7 @@ import org.spongycastle.jce.provider.BouncyCastleProvider;
 		    sig.update(buffer, 0, len);
 		}
 		bufin.close();
-		boolean verifies=sig.verify(Base64.decode(sigToVerify, Base64.DEFAULT));
+		boolean verifies=sig.verify(Base64.decodeBase64(sigToVerify));
 		Verify.tv.setText("Digital Signature verification result: "+verifies);
     }		
 }

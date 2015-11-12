@@ -28,9 +28,10 @@ public class Log
     	  f.mkdir();      
       DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	   
       Date date = new Date();     
-      String s=dateFormat.format(date)+"-> "+e.toString(); //Write date,time,error message to Log.txt
+      String s=dateFormat.format(date)+"-> "; //Write date,time
       PrintWriter pw=new PrintWriter((new BufferedWriter(new FileWriter("Logs/Log.txt", true)))); //append String to Log.txt
-      pw.println(s);
+      pw.write(s);
+      e.printStackTrace(pw);
       pw.close();
       s="Oops! Errors have been detected!\n"+e.toString()+"\nCheck: "+f.getAbsolutePath()+" for more details";
       return s;

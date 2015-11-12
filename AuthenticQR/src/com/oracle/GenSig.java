@@ -3,7 +3,6 @@ package com.oracle;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
-import java.util.Base64;
 
 import java.security.SecureRandom;
 import java.security.Security;
@@ -13,6 +12,7 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
+import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
@@ -37,9 +37,8 @@ public class GenSig
     public static void Gen_sig(String file,String dest) throws Exception
     {	    
 	    	Security.insertProviderAt(new BouncyCastleProvider(), 1);
-    		KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "BC"); //Generate a key pair
-            SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-            keyGen.initialize(3072, random); //initialize a 3072-bit key with a SecureRandom object
+    		KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "BC"); //Generate a key pair           
+            keyGen.initialize(3072, new SecureRandom()); //initialize a 3072-bit key with a SecureRandom object
             KeyPair pair = keyGen.generateKeyPair(); //generate private and public key
             PrivateKey priv = pair.getPrivate();
             PublicKey pub = pair.getPublic();
@@ -57,11 +56,11 @@ public class GenSig
                 rsa.update(buffer, 0, len);
             }
             bufin.close();
-            byte[] realSig = Base64.getEncoder().encode(rsa.sign()); //Now that all the data to be signed has been read in,generate a signature for it     
+            byte[] realSig = Base64.encodeBase64(rsa.sign()); //Now that all the data to be signed has been read in,generate a signature for it     
             FileOutputStream sigfos = new FileOutputStream(dest+"/sig"); //create 'sig' file
             sigfos.write(realSig);//write the signature to 'sig' file
             sigfos.close();
-            byte[] key = Base64.getEncoder().encode(pub.getEncoded());
+            byte[] key = Base64.encodeBase64(pub.getEncoded());
             FileOutputStream keyfos = new FileOutputStream(dest+"/suepk"); //create 'suepk' file
             keyfos.write(key);//write the public key to 'suepk' file
             keyfos.close();  	  

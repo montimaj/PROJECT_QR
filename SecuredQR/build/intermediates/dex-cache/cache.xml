@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/sayantan/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/libs/spongycastle/prov-1.51.0.0.jar"
+        jar="/home/sayantan/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/libs/bouncycastle/bcprov-jdk15on-152.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="6755081df770180856ca48694b40cd34c2208128">
-        <dex dex="/home/sayantan/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/prov-1.51.0.0-c21b7e07c0f09ba9fb78154fd2fa0c774929599b.jar" />
-    </item>
-    <item
-        jar="/home/sayantan/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/libs/spongycastle/core-1.51.0.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="0f642963312ea0e615ad65f28adc5a5b3a2a0862">
-        <dex dex="/home/sayantan/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/core-1.51.0.0-6b77aea2b972497e9cb993c6595e47e265c246ed.jar" />
+        sha1="88a941faf9819d371e3174b5ed56a3f3f7d73269">
+        <dex dex="/home/sayantan/MONTI/monti/Monti_Backup/PROGS/SecuredQR/app/build/intermediates/pre-dexed/debug/bcprov-jdk15on-152-ff01aa86ffce188d249312157a46cb1d420f7970.jar" />
     </item>
 
 </items>

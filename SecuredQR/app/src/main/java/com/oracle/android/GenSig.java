@@ -1,6 +1,7 @@
 package com.oracle.android;
 
-import android.util.Base64;
+import edu.sxccal.qrcodescanner.QRCode;
+import edu.sxccal.qrcodescanner.QR;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,8 +15,7 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-import edu.sxccal.qrcodescanner.QRCode;
-import edu.sxccal.qrcodescanner.QR;
+import org.apache.commons.codec.binary.Base64;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
 
 /**
@@ -33,10 +33,8 @@ public class GenSig
     	FileInputStream fis = new FileInputStream(file);
         Security.insertProviderAt(new BouncyCastleProvider(),1);
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "SC");
-        //Algorithm provider for Android java is AndroidOpenSSL 
-        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
         int keysize=3072;
-        keyGen.initialize(keysize, random);
+        keyGen.initialize(keysize, new SecureRandom());
         KeyPair pair = keyGen.generateKeyPair();
         PrivateKey priv = pair.getPrivate();
         PublicKey pub = pair.getPublic();
@@ -51,12 +49,12 @@ public class GenSig
             rsa.update(buffer, 0, len);
         }
         bufin.close();
-        byte[] realSig = Base64.encode(rsa.sign(), Base64.DEFAULT);
+        byte[] realSig = Base64.encodeBase64(rsa.sign());
         String f1=QRCode.filePath+"/sig",f2=QRCode.filePath+"/suepk";
         FileOutputStream sigfos = new FileOutputStream(f1);
         sigfos.write(realSig);
         sigfos.close();
-        byte[] key = Base64.encode(pub.getEncoded(), Base64.DEFAULT);
+        byte[] key = Base64.encodeBase64(pub.getEncoded());
         FileOutputStream keyfos = new FileOutputStream(f2);
         keyfos.write(key);
         keyfos.close();
