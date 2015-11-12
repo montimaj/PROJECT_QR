@@ -18,7 +18,7 @@ System requirements for PC:
 
 -> Linux
 
--> JDK 1.8 or above
+-> JDK 1.7 and above
 
 -> GTK+
 
