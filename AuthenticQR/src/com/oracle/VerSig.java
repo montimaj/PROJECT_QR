@@ -7,8 +7,10 @@ import java.util.Base64;
 import java.security.KeyFactory;
 import java.security.Signature;
 import java.security.PublicKey;
+import java.security.Security;
 import java.security.spec.X509EncodedKeySpec;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 /**
 * Verifies whether the input file is authentic
 * @since 1.0
@@ -30,15 +32,16 @@ public class VerSig
             byte[] encKey = new byte[keyfis.available()];  
             keyfis.read(encKey);
             keyfis.close();
+            Security.insertProviderAt(new BouncyCastleProvider(), 1);
             X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(encKey));
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA", "SunRsaSign");
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA", "BC");
             // Generate a public key object from the provided key specification(key material)
             PublicKey pubKey = keyFactory.generatePublic(pubKeySpec); 
             FileInputStream sigfis = new FileInputStream(sign); //import the signature bytes
             byte[] sigToVerify = new byte[sigfis.available()]; 
             sigfis.read(sigToVerify);
             sigfis.close();
-            Signature sig = Signature.getInstance("SHA1withRSA", "SunRsaSign"); //create a signature object 
+            Signature sig = Signature.getInstance("SHA256withRSA", "BC"); //create a signature object 
             sig.initVerify(pubKey); //sign it with the public key
             
             //update and verify the input file

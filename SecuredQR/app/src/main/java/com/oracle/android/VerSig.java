@@ -6,11 +6,13 @@ import java.io.FileInputStream;
 import java.io.BufferedInputStream;
 
 import java.security.KeyFactory;
+import java.security.Security;
 import java.security.Signature;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 
 import edu.sxccal.qrcodescanner.Verify;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
 
 /**
  * Verifies input file
@@ -34,14 +36,15 @@ import edu.sxccal.qrcodescanner.Verify;
 		byte[] encKey = new byte[keyfis.available()];  
 		keyfis.read(encKey);
 		keyfis.close();
+		Security.insertProviderAt(new BouncyCastleProvider(), 1);
 		X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(Base64.decode(encKey, Base64.DEFAULT));
-		KeyFactory keyFactory = KeyFactory.getInstance("RSA", "AndroidOpenSSL");
+		KeyFactory keyFactory = KeyFactory.getInstance("RSA", "SC");
 		PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 		FileInputStream sigfis = new FileInputStream(args[1]);            
 		byte[] sigToVerify = new byte[sigfis.available()]; 
 		sigfis.read(sigToVerify);
 		sigfis.close();
-		Signature sig = Signature.getInstance("SHA1withRSA", "AndroidOpenSSL");
+		Signature sig = Signature.getInstance("SHA256withRSA", "SC");
 		sig.initVerify(pubKey);
 		FileInputStream datafis = new FileInputStream(args[2]);            
 		BufferedInputStream bufin = new BufferedInputStream(datafis);

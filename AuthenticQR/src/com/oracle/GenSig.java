@@ -6,11 +6,14 @@ import java.io.BufferedInputStream;
 import java.util.Base64;
 
 import java.security.SecureRandom;
+import java.security.Security;
 import java.security.KeyPairGenerator;
 import java.security.Signature;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
 * Creates a detached digital signature along with the public key 
@@ -33,15 +36,16 @@ public class GenSig
     */
     public static void Gen_sig(String file,String dest) throws Exception
     {	    
-	    KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "SunRsaSign"); //Generate a key pair
-            SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
+	    	Security.insertProviderAt(new BouncyCastleProvider(), 1);
+    		KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "BC"); //Generate a key pair
+            SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
             keyGen.initialize(3072, random); //initialize a 3072-bit key with a SecureRandom object
             KeyPair pair = keyGen.generateKeyPair(); //generate private and public key
             PrivateKey priv = pair.getPrivate();
             PublicKey pub = pair.getPublic();
             
             /* Create a Signature object and initialize it with the private key */
-            Signature rsa = Signature.getInstance("SHA1withRSA", "SunRsaSign");
+            Signature rsa = Signature.getInstance("SHA256withRSA", "BC");
             rsa.initSign(priv); 
             FileInputStream fis = new FileInputStream(file);
             BufferedInputStream bufin = new BufferedInputStream(fis);

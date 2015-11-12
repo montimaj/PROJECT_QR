@@ -2,7 +2,6 @@
 
 clear
 export MAIN_DIALOG='
-
 <window title="Authentic QR">
   
   <notebook labels="Generate|Verify">
@@ -128,6 +127,5 @@ export MAIN_DIALOG='
    </notebook>
    
 </window>
-
 '
 gtkdialog --program=MAIN_DIALOG

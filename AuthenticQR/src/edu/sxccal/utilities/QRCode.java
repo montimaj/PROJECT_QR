@@ -1,7 +1,7 @@
 package edu.sxccal.utilities;
 
-import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,6 +71,6 @@ public class QRCode
   public static void createQRCode(String data, String file, Map<EncodeHintType, ErrorCorrectionLevel> hint_map, int qrh, int qrw) throws WriterException, IOException
   {		
     BitMatrix matrix = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, qrw, qrh, hint_map); //Zxing libraries--> BitMatrix, MatrixToImageWriter
-    MatrixToImageWriter.writeToFile(matrix, "png",new File(file));
+    MatrixToImageWriter.writeToStream(matrix, "png",new FileOutputStream(file));
   }	
 }

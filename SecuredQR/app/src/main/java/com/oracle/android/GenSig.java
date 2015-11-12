@@ -8,6 +8,7 @@ import java.io.BufferedInputStream;
 
 import java.security.SecureRandom;
 import java.security.KeyPairGenerator;
+import java.security.Security;
 import java.security.Signature;
 import java.security.KeyPair;
 import java.security.PrivateKey;
@@ -15,6 +16,7 @@ import java.security.PublicKey;
 
 import edu.sxccal.qrcodescanner.QRCode;
 import edu.sxccal.qrcodescanner.QR;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
 
 /**
  * Creates 'sig' and 'suepk' files
@@ -28,16 +30,17 @@ public class GenSig
      */
     public static void Gen_sig(String file) throws Exception
     {
-    	FileInputStream fis = new FileInputStream(file);        
-        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "AndroidOpenSSL"); 
+    	FileInputStream fis = new FileInputStream(file);
+        Security.insertProviderAt(new BouncyCastleProvider(),1);
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA", "SC");
         //Algorithm provider for Android java is AndroidOpenSSL 
-        SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "AndroidOpenSSL");
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
         int keysize=3072;
         keyGen.initialize(keysize, random);
         KeyPair pair = keyGen.generateKeyPair();
         PrivateKey priv = pair.getPrivate();
         PublicKey pub = pair.getPublic();
-        Signature rsa = Signature.getInstance("SHA1withRSA", "AndroidOpenSSL");
+        Signature rsa = Signature.getInstance("SHA256withRSA", "SC");
         rsa.initSign(priv);            
         BufferedInputStream bufin = new BufferedInputStream(fis);
         byte[] buffer = new byte[keysize];
