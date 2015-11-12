@@ -2,11 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.sxccal.qrcodescanner"
     android:versionCode="2"
-    android:versionName="2.1" >
-
-    <uses-sdk
-        android:minSdkVersion="17"
-        android:targetSdkVersion="23" />
+    android:versionName="2.2" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

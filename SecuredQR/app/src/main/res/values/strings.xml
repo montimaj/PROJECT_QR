@@ -20,6 +20,6 @@
     <string name="decode">Decode QR image</string>
 	<string name="sfile">Select Input File</string>
     <string name="developers">Developed by Sayantan-Abhisek-Biswarup </string>
-    <string name="ver">SECURED QR v2.1.1</string>
+    <string name="ver">SECURED QR v2.2</string>
     <string name="about_txt">View source at https://github.com/montimaj/PROJECT_QR</string>
 </resources>
