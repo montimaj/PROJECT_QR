@@ -10,7 +10,7 @@ The digital signatute scheme has been implemented using:
 
 -> Encryption Algorithm: RSA
 
--> Hash Algorithm: SHA-1
+-> Hash Algorithm: SHA-256, Provider: Bouncycastle(PC), Spongycastle(app)
 
 -> Keysize: 3072-bit
 
